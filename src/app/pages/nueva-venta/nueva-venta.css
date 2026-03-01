@@ -1,0 +1,25 @@
+.botonAceptrar p-button,
+.botonCancelar p-button {
+    display: flex;
+    width: 100%;
+}
+
+.botonAceptrar p-button button,
+.botonCancelar p-button button {
+    width: 100%;
+}
+
+@media (min-width:250px) and (max-width: 770px) {
+
+
+    .p-datatable-table-container,
+    table {
+        max-width: 75vw !important;
+
+    }
+
+
+}
+.card{
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

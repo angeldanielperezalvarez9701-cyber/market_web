@@ -1,0 +1,15 @@
+.logo-container {
+  /* Usamos rem para que escale con la fuente del sistema */
+  height: 4.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.header-logo {
+  /* La magia responsive */
+  height: 100%;    /* Siempre mide el alto de su contenedor */
+  width: auto;      /* Mantiene la proporción para no verse estirado */
+  max-width: 100%;  /* No se sale si el contenedor es muy pequeño */
+  object-fit: contain; /* Asegura que se vea completo */
+}

@@ -1,0 +1,16 @@
+.p-card{
+    cursor: pointer;
+}
+
+.p-card:hover{
+    background-color: #E0F2FE;
+}
+
+@media  (min-width: 200px) and (max-width: 580px) {
+
+    .cardUno{
+        margin-top: 1.5rem;
+       width: 100%;
+    }
+    
+}

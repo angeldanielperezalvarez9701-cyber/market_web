@@ -1,0 +1,156 @@
+p-avatar:hover{
+    transition: filter 0.3s ease;
+    filter: brightness(75%);
+    cursor: pointer;
+}
+
+.boton_todosProductos p-button {
+    width: 100%;
+}
+
+.selectButon{
+    width: 100% !important;
+    min-width: 100% !important;
+    display: flex;
+    align-items: center;
+    padding-left: 10%;
+}
+.p-component{
+    z-index: 1 ;
+}
+
+
+@media (min-width: 270px) and (max-width:1100px) {
+    
+    .div-busca-todo{
+        display: flex !important;
+        justify-content: center !important;
+
+    }
+}
+
+.boton_todosProductos p-button button {
+    width: 100%;
+}
+
+.imagenProducto{
+
+    height: 100%;
+    padding-bottom: 0 !important;
+    padding-right: 0 !important; 
+    padding-left: 0% !important;
+    padding-top: 0% !important;
+ 
+}
+
+.p-card-header{
+    height: 30vh !important;
+    max-height: 30vh !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.img{
+  height: 80% !important;    /* Siempre mide el alto de su contenedor */
+  width: 90% !important;      /* Mantiene la proporción para no verse estirado */
+  max-width: 100%;  /* No se sale si el contenedor es muy pequeño */
+  object-fit: contain;
+  filter: drop-shadow(0px 0px 10px rgba(0,0,0,0.5)); 
+}
+
+
+.pi-cart-arrow-down{
+    font-size: 80%;
+    color: rgb(52, 131, 250) !important;
+}
+
+.pi-dollar{
+    font-size: smaller !important;
+}
+
+
+p-card{
+    width: 100% !important;
+    max-width: 100%;
+}
+
+.busqueda{
+    padding-right: 0% !important;
+    padding-left: 0% !important;
+}
+.p-inputgroup,.p-inputtext{
+    padding-right: 0% !important;
+    margin-right: 0% !important;
+    width: 98% !important;
+    min-width: 98% !important;
+}
+
+.agregaCarrito{
+    position: absolute;
+    top: 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 2%;
+    padding-top: 2%;
+    width: 95.9%;
+    height: 15%;
+    z-index: 9999;
+}
+
+
+.shoping{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.1);
+   /* SOLUCIÓN: Usar la altura del padre y mantener la proporción 1:1 */
+    height: 80%; /* Ajusta este tamaño a tu gusto */
+    aspect-ratio: 1 / 1; 
+    border-radius: 50%;
+     z-index: 10000;   
+}
+
+.cantidad{
+    width: 100%;
+    display: block;
+}
+.dc{
+    position: relative;
+  
+}
+
+@media (min-width: 270px) and (max-width: 750px) {
+
+    .dc{
+        width: 90vw !important;
+        min-width: 90vw !important;
+        margin-bottom: 3%;
+    }
+
+    .sear{
+
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+        padding-left: 0% !important;
+        padding-right: 0% !important;
+        position: sticky;
+        top: 5%;
+        z-index: 1;
+    }
+
+
+    .titulo,.sear{
+        margin-top: 2% !important;
+    }
+    .seleccion{
+        
+        width: 95% !important;
+        min-width: 95% !important;
+        padding-left: 3%;
+    }
+    
+}

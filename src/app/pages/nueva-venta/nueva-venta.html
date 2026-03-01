@@ -1,0 +1,72 @@
+<div class="container mx-auto">
+    <div class="grid flex justify-content-center">
+
+        <div class="contenido sm:col-10 md:col-10 lg:col-10 xl:col-10">
+
+            <div class="grid titulo flex justify-content-center mt-4  pl-8 pr-8">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi-shopping-bag"></i> Nueva venta</h1>
+                </div>
+            </div>
+
+            <div class="grid mt-4 pl-8 pr-8 flex flex justify-content-center div-buton">
+                <div class="comboBotones sm:col-12 md:col-10 lg:col-10 xl:col-10 flex justify-content-end flex-wrap">
+                    <div class="botonAceptrar sm:col-12 md:col-12 lg:col-4 xl:col-3   text-right">
+                        <p-button class="w-full" label="Terminar Compra" severity="contrast" [rounded]="true"
+                            icon="pi pi-check-circle" [raised]="true" />
+                    </div>
+                    <div class="botonCancelar sm:col-12 md:col-6 lg:col-4 xl:col-3  text-right">
+                        <p-button class="w-full" label="Cancelar compra" severity="secondary" [rounded]="true"
+                            icon="pi pi-trash" [raised]="true" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid mb-4  pl-8 pr-8 pt-4 flex justify-content-center con">
+                <div class="tabl sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <div class="card">
+                        <p-toast />
+                        <p-table [value]="products" [tableStyle]="{ 'min-width': '50rem' }">
+                            <ng-template #header>
+                                <tr>
+                                    <th>Producto</th>
+                                    <th class="text-center">Cantidad</th>
+                                    <th class="text-center">Precio Unidad</th>
+                                    <th class="text-center">Total</th>
+                                    <th class="text-center">Quitar producto</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template #body let-product>
+                                <tr>
+                                    <td>{{ product.producto }}</td>
+                                    <td class="text-center">{{ product.cantidad }}</td>
+                                    <td class="text-center">{{ product.preciosUnidad }}</td>
+                                    <td class="text-center">{{ product.total }}</td>
+                                    <td class="text-center">
+                                        <p-button icon="pi pi-trash" severity="secondary" rounded />
+                                    </td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid mt-4 pl-8 pr-8 flex flex justify-content-center">
+                <div class="m:col-12 md:col-10 lg:col-10 xl:col-10 flex justify-content-end flex-wrap">
+                    <div class="botonAceptrar sm:col-12 md:col-12 lg:col-12 xl:col-12  text-right">
+                        <p-button class="w-full" label="Agregar Producto manualmente" severity="secondary"
+                            [rounded]="true" icon="pi pi-cart-arrow-down" [raised]="true" />
+                    </div>
+                </div>
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,251 @@
+<div class="container mx-auto">
+    <div class="grid flex justify-content-center">
+
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10">
+
+
+            <div class="grid titulo flex justify-content-center mt-4  pl-8 pr-8">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi-tags"></i>Productos</h1>
+                </div>
+            </div>
+
+            <div class="ver_todos grid flex justify-content-center mt-4  pl-8 pr-8"
+                [ngClass]="{'ocultar-div' : visibleBoton}">
+                <div
+                    class="div-busca-todo grid sm:col-12 md:col-12 lg:col-12 xl:col-10 flex justify-content-end flex-wrap">
+                    <div class="boton_todosProductos sm:col-12 md:col-10 lg:col-10 xl:col-4">
+                        <p-button class="w-full" label="Ver todos los productos" severity="contrast" [rounded]="true"
+                            icon="pi pi-search" [raised]="true" (click)="verTodosProductos($event)" />
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid sear flex justify-content-center mt-4  pl-8 pr-8">
+                <div class="busqueda sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <div class="card flex flex-col md:flex-row gap-4">
+                        <p-inputgroup>
+                            <input pInputText placeholder="Buscar Producto"
+                                pTooltip="Describe el producto que necesitas" tooltipEvent="focus"
+                                tooltipPosition="top" />
+                            <p-inputgroup-addon>
+                                <p-button icon="pi pi-search" severity="secondary" variant="text"
+                                    (click)="menu.toggle($event)" />
+                            </p-inputgroup-addon>
+                        </p-inputgroup>
+                        <p-menu #menu [model]="items" popup styleClass="!min-w-fit" />
+
+                    </div>
+                </div>
+
+                <div class="grid seleccion  sm:col-12 md:col-12 lg:col-12 xl:col-10 mt-0"
+                    [ngClass]="{'ocultar-div' : visibleOpciones}">
+
+                    @if (esCelular) {
+
+                    <div class="card selectButon sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                        <p-drawer [(visible)]="visibleMenu" header="Drawer" [modal]="false">
+
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt Ut
+                                labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                                ullamco
+                            </p>
+
+                        </p-drawer>
+
+                        <p-button (click)="visibleMenu = true" icon="pi pi-arrow-right" />
+
+                        <p>Filtrar busqueda</p>
+                    </div>
+
+                    }@else {
+                    <div class="card select sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                        <p><strong>Ordena o filta por:</strong></p>
+                        <p-selectbutton [options]="stateOptions" [(ngModel)]="value" optionLabel="label"
+                            optionValue="value" fluid (onChange)="cambioFiltro($event)" />
+                    </div>
+                    }
+
+                </div>
+            </div>
+
+            <div class="grid  flex justify-content-center mt-4  pl-8 pr-8 " [ngClass]="{'ocultar-div' : visible}">
+                <div class="busquedaPorIcono sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <div class="grid  titulos">
+                        <div class="descripTitulo">
+                            <h2><i class="pi pi-tags"></i>Buscar Producto Por Departamento</h2>
+                            <p class="mt-4 pt-2">En esta sección puedes selecciónar el tipo de producto que desas ver.
+                                <strong>Ejemplo: El departamento de lactos</strong>
+                            </p>
+                            <hr class="mb-3">
+                            <small class="mt-4 pt-2"><strong>Preciona sobre las imagenes el departamento que necesites
+                                    consultar</strong></small>
+                        </div>
+                    </div>
+
+                    <div class="grid  flex justify-content-center  mt-4 pt-4">
+                        <div
+                            class=" sm:col-12 md:col-12 lg:col-12 xl:col-12  flex justify-content-around  flex-wrap divTip p-0">
+                            <div
+                                class="grid sm:col-4 md:col-4 lg:col-2 xl:col-2 tip flex align-items-center justify-content-center  flex-column div-seleccionable">
+                                <p-avatar image="/img/lacteos.webp" class="mr-2" size="xlarge" shape="circle" />
+                                <div class="tituloEtiqueta">
+                                    <h5>Lacteos</h5>
+                                </div>
+                            </div>
+                            <div
+                                class="grid sm:col-4 md:col-4 lg:col-2 xl:col-2 flex align-items-center justify-content-center  flex-column">
+                                <p-avatar image="/img/granosLegumbres.webp" class="mr-2" size="xlarge" shape="circle" />
+                                <div class="tituloEtiqueta">
+                                    <h5>Granos y legumbres</h5>
+                                </div>
+                            </div>
+                            <div
+                                class="grid sm:col-4 md:col-4 lg:col-2 xl:col-2 flex align-items-center justify-content-center  flex-column">
+                                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                                    class="mr-2" size="xlarge" shape="circle" />
+                                <div class="tituloEtiqueta">
+                                    <h5>Abarrotes</h5>
+                                </div>
+                            </div>
+                            <div
+                                class="grid sm:col-4 md:col-4 lg:col-2 xl:col-2 flex align-items-center justify-content-center  flex-column">
+                                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                                    class="mr-2" size="xlarge" shape="circle" />
+                                <div class="tituloEtiqueta">
+                                    <h5>Chiles secos</h5>
+                                </div>
+                            </div>
+                            <div
+                                class="grid sm:col-4 md:col-4 lg:col-2 xl:col-2 flex align-items-center justify-content-center   flex-column">
+                                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                                    class="mr-2 " size="xlarge" shape="circle" />
+                                <div class="tituloEtiqueta">
+                                    <h5>Dulceria</h5>
+                                </div>
+                            </div>
+                            <div
+                                class="grid sm:col-4 md:col-4 lg:col-2 xl:col-2 align-items-center justify-content-center flex-column">
+                                <p-avatar image="https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png"
+                                    class="mr-2" size="xlarge" shape="circle" />
+                                <div class="tituloEtiqueta">
+                                    <h5>Refrescos y bebidas</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid div_productos flex align-items-center justify-content-center mt-4  pl-8 pr-8"
+                [ngClass]="{'ocultar-div' : visibleListaProductos}">
+                <div class="grid sm:col-12 md:col-12 lg:col-12 xl:col-10 ba flex justify-content-around">
+                    <div class="sm:col-12 md:col-6 lg:col-6 xl:col-4 dc">
+                        <div class="agregaCarrito">
+                            <h2 class="shoping"><a href="" class="pi pi-cart-arrow-down"></a></h2>
+                        </div>
+                        <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+                            <ng-template #header>
+                                <img alt="Card" class="w-full img" src="/img/azucar.webp" />
+                            </ng-template>
+                            <hr>
+                            <ng-template #title> Azucar Zulka Morena </ng-template>
+                            <ng-template #subtitle><small class="pi pi-arrows-alt"></small>
+                                25<small>kg</small></ng-template>
+                            <p>
+                                Azucar Morena Zulka de 25kg. Azucar refinada de alta Calidad
+                            </p>
+                            <h2>$580</h2>
+                            <ng-template #footer>
+                                <div class="flex gap-4 mt-1">
+                                    <p-button label="Comprar producto" class="w-full" styleClass="w-full" />
+                                </div>
+                            </ng-template>
+                        </p-card>
+                    </div>
+                    <div class="sm:col-12 md:col-6 lg:col-6 xl:col-4 dc">
+                        <div class="agregaCarrito">
+                            <h2 class="shoping"><a href="" class="pi pi-cart-arrow-down"></a></h2>
+                        </div>
+                        <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+                            <ng-template #header>
+                                <img alt="Card" class="w-full img" src="/img/alpuraDeslac-Photoroom.png" />
+                            </ng-template>
+                            <hr>
+                            <ng-template #title>Leche Alpura Deslactosada</ng-template>
+                            <ng-template #subtitle><small class="pi pi-arrows-alt"></small> 1<small>Lt</small>
+                            </ng-template>
+                            <p>
+                                Leche Alpura Deslactosada de 1lt. Leche de alta calidad
+                            </p>
+                            <h2>$28</h2>
+                            <ng-template #footer>
+                                <div class="flex gap-4 mt-1">
+                                    <p-button label="Comprar producto" class="w-full" styleClass="w-full" />
+                                </div>
+                            </ng-template>
+                        </p-card>
+                    </div>
+
+                    <div class="sm:col-12 md:col-6 lg:col-6 xl:col-4 dc">
+                        <div class="agregaCarrito">
+                            <h2 class="shoping"><a href="" class="pi pi-cart-arrow-down"></a></h2>
+                        </div>
+                        <p-card [style]="{ width: '25rem', overflow: 'hidden' }">
+                            <ng-template #header>
+                                <img alt="Card" class="w-full img" src="/img/salvo (1)-Photoroom.webp" />
+                            </ng-template>
+                            <hr>
+                            <ng-template #title>Jabon Lava Trastes Salvo</ng-template>
+                            <ng-template #subtitle><small class="pi pi-arrows-alt"></small> 800<small>ml</small>
+                            </ng-template>
+                            <p>
+                                Jabon Lava Trastes Salvo de 800ml. Jabon rendidor lava trastes
+                            </p>
+                            <h2>$54</h2>
+                            <ng-template #footer>
+                                <div class="flex gap-4 mt-1">
+                                    <p-button label="Comprar producto" (click)="confirm()" class="w-full"
+                                        styleClass="w-full" />
+                                </div>
+                            </ng-template>
+                        </p-card>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+        <div class="card flex justify-center">
+            <p-toast />
+            <p-confirmdialog>
+                <ng-template #message let-message>
+                    @if (message) {
+                    <div
+                        class="flex flex-col items-center w-full gap-4 border-b border-surface-200 dark:border-surface-700">
+                        <i [ngClass]="message.icon" class="!text-6xl text-primary-500"></i>
+                        <p>{{ message.message }}</p>
+
+                        <div class="cantidad">
+                            <p-inputnumber [(ngModel)]="cantidadPiezas" [showButtons]="true" buttonLayout="vertical"
+                                spinnerMode="vertical" inputId="vertical" [inputStyle]="{ width: '3rem' }">
+                                <ng-template #incrementbuttonicon>
+                                    <span class="pi pi-plus"></span>
+                                </ng-template>
+                                <ng-template #decrementbuttonicon>
+                                    <span class="pi pi-minus"></span>
+                                </ng-template>
+                            </p-inputnumber>
+                        </div>
+                    </div>
+                    }
+                </ng-template>
+            </p-confirmdialog>
+
+        </div>
+
+    </div>
+</div>
