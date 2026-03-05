@@ -4,12 +4,13 @@ import { FormControlProducto } from '../modulos/control-producto/form-control-pr
 import { BusquedaProducos } from '../modulos/control-producto/busqueda-producos/busqueda-producos';
 import { ListaProductos } from "../modulos/control-producto/lista-productos/lista-productos";
 import { ControlProductoUiService } from '../../services/ui/control-producto-ui-service';
+import { InventarioGeneralProductos } from "../modulos/control-producto/inventario-general-productos/inventario-general-productos";
 
 
 
 @Component({
   selector: 'app-control-productos',
-  imports: [CommonModule, FormControlProducto, BusquedaProducos, ListaProductos],
+  imports: [CommonModule, FormControlProducto, BusquedaProducos, ListaProductos, InventarioGeneralProductos],
   templateUrl: './control-productos.html',
   styleUrl: './control-productos.css',
   encapsulation: ViewEncapsulation.None
@@ -34,5 +35,9 @@ export class ControlProductos implements OnInit {
 
   listarProducto(event: MouseEvent) {
     this.ui.mostartListaProducto();
+  }
+
+  verInventario(event: MouseEvent){
+    this.ui.mostarInventario();
   }
 }

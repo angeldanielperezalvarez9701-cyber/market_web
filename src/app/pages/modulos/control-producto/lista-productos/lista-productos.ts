@@ -1,4 +1,5 @@
-import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation,SimpleChanges} from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
 import { IconFieldModule } from 'primeng/iconfield';
@@ -12,9 +13,17 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { TipoProducto } from '../../../../model/TipoProducto';
 import { InputTextModule } from 'primeng/inputtext';
 import { CurrencyPipe } from '@angular/common';
+import { Input } from '@angular/core';
+import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
+
 @Component({
   selector: 'app-lista-productos',
-  imports: [ButtonModule, RatingModule, TableModule, TagModule, FormsModule,ConfirmDialogModule,IconFieldModule,InputIconModule,InputTextModule,CurrencyPipe],
+  imports: [ButtonModule, RatingModule,
+            TableModule, TagModule, 
+            FormsModule,ConfirmDialogModule,
+            IconFieldModule,InputIconModule,
+            InputTextModule,CurrencyPipe,
+            CommonModule],
   templateUrl: './lista-productos.html',
   styleUrl: './lista-productos.css',
   standalone: true,
@@ -22,14 +31,26 @@ import { CurrencyPipe } from '@angular/common';
 })
 export class ListaProductos implements OnInit {
 
+   @Input() nombreTitulo!: string;
+   @Input() vistaBotonera!: boolean;
   listaProductoUi  = new ListaProductosUi();
   products: Array<Producto> = [];
+ 
+  constructor(public ui: ControlProductoUiService) {}
 
   ngOnInit(): void {
         
     this.llenaProducto();
     this.listaProductoUi.columnasTabla();
 
+  }
+
+  ngOnChanges(changes: SimpleChanges){
+
+    if(this.vistaBotonera === true){
+       this.listaProductoUi.componentesElementoPadre()
+    }
+    
   }
 
   /** 

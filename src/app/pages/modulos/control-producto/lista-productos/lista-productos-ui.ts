@@ -1,10 +1,12 @@
 import { Column } from "../../../../model/InterfaceUi/TablaProductos";
+import { Constantes } from "../../../../utils/constantes/Constantes";
 
 export class ListaProductosUi {
 
     cols!: Column[];
     loading: boolean = false;
-
+    botonera:boolean=false;
+    texttoTitulo:string=Constantes.TITULO_LISTA_PRODUCTO;
 
     llenaTablaProducto() {
 
@@ -19,6 +21,10 @@ export class ListaProductosUi {
         ];
     }
 
+    componentesElementoPadre(){
+     this.texttoTitulo= Constantes.TITULO_BUQUEDA_PRODUCTO;
+     this.botonera = true;
+    }
     
 
 

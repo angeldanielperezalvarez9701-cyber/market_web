@@ -14,6 +14,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms'; //
 import { TipoProducto } from '../../../../model/TipoProducto';
+import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
 
 @Component({
   selector: 'app-form-control-producto',
@@ -41,6 +42,8 @@ export class FormControlProducto implements OnInit {
 
   tipoProducto: TipoProducto[] = [];
   selectedCity: TipoProducto | undefined;
+
+  constructor(public ui: ControlProductoUiService) {}
 
   ngOnInit(): void {
 

@@ -1,0 +1,48 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi-list-check"></i>Inventario</h1>
+                </div>
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary"
+                        (onClick)="ui. muestraContenedorPrincipal('listaProducto')" />
+                </div>
+            </div>
+
+
+            <div class="grid  flex justify-content-center mt-4">
+                <div class="grid control-inventario sm:col-12 md:col-10 lg:col-10 xl:col-10 flex justify-content-between flex-wrap">
+
+                    <div
+                        class="sm:col-12 md:col-10 lg:col-4 xl:col-4  flex justify-content-center align-items-center divSombreados">
+                        <div class="contenidos">
+                            <h2>Inventario General</h2>
+                            <p>Ver el estado general</p>
+                        </div>
+                    </div>
+                    <div
+                        class="sm:col-12 md:col-10 lg:col-4 xl:col-4 flex justify-content-center align-items-center divSombreados">
+                        <div class="contenidos">
+                            <h2>Inventario Por tienda</h2>
+                            <p>Ver el estado por tienda</p>
+                        </div>
+                    </div>
+                    <div
+                        class="sm:col-12 md:col-10 lg:col-4 xl:col-4 flex justify-content-center align-items-center divSombreados">
+                        <div class="contenidos">
+                            <h2>Inventario por Almacen</h2>
+                            <p>Ver el estado por Almacen</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</div>

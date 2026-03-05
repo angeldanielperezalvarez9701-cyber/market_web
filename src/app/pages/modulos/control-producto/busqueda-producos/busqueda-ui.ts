@@ -1,5 +1,6 @@
 import { Constantes } from "../../../../utils/constantes/Constantes";
 
+
 export class BusquedaUI {
 
     ingredient!: string;
@@ -7,7 +8,9 @@ export class BusquedaUI {
     textoInput: String = "";
     textoSamall: String = "";
     inputBusqueda: boolean = true;
-
+    listarProductos: boolean = true
+    nombreTitulo: string = Constantes.TITULO_BUQUEDA_PRODUCTO;
+    vistaBotonera:boolean=false;
 
     aplicarOpcion(opcion: string) {
 
@@ -29,5 +32,14 @@ export class BusquedaUI {
             this.textoSamall = Constantes.SAMALL_BUSQUEDA_D;
         }
     }
+
+    muestraProducto() {
+        this.listarProductos = false;
+        this.inputBusqueda = true;
+        this.vistaBotonera=true;
+    }
+
+   
+  
 
 }

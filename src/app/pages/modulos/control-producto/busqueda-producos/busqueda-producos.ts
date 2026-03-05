@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, inject, OnInit, ViewEncapsulation,SimpleChanges } from '@angular/core';
 import { ToastModule } from 'primeng/toast';
 import { MessageModule } from 'primeng/message';
 import { FloatLabelModule } from 'primeng/floatlabel';
@@ -7,9 +7,10 @@ import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
-import { Constantes } from '../../../../utils/constantes/Constantes';
 import { NgClass } from '@angular/common';
 import { BusquedaUI } from './busqueda-ui';
+import { ListaProductos } from "../lista-productos/lista-productos";
+import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
 
 @Component({
   selector: 'app-busqueda-producos',
@@ -19,7 +20,8 @@ import { BusquedaUI } from './busqueda-ui';
     FormsModule, ReactiveFormsModule,
     FloatLabelModule,
     ButtonModule, ToastModule, RadioButtonModule,
-    NgClass
+    NgClass,
+    ListaProductos
   ],
   templateUrl: './busqueda-producos.html',
   styleUrl: './busqueda-producos.css',
@@ -28,14 +30,21 @@ import { BusquedaUI } from './busqueda-ui';
 })
 export class BusquedaProducos implements OnInit {
 
-  busquedaui = new BusquedaUI(); 
+  busquedaui = new BusquedaUI();
+
+  constructor(public ui: ControlProductoUiService) {}
 
   ngOnInit(): void {
 
   }
 
-  ngDoCheck() {
+  ngOnChanges(changes: SimpleChanges) {
+    console.log(changes);
+  }
 
+  onCambioOpcion(o:any) {
+
+    
     let opcion = this.busquedaui.ingredient;
 
     console.log("opcion" + opcion)
@@ -43,9 +52,19 @@ export class BusquedaProducos implements OnInit {
     if (opcion !== undefined) {
 
       this.busquedaui.aplicarOpcion(opcion);
-     
+      
     }
 
 
   }
+
+  consultaProducto() {
+    console.log("Escucho")
+
+    this.busquedaui.muestraProducto();
+
+  }
+
+ 
+
 }

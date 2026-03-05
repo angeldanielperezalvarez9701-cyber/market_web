@@ -6,6 +6,9 @@
                 <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
                     <h1><i class="pi pi pi-save"></i>Buscar Producto</h1>
                 </div>
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary" (onClick)="ui. muestraContenedorPrincipal('buscaProducto')" />
+                </div>
             </div>
 
             <div class="grid  div-form flex justify-content-center mt-3 ">
@@ -15,27 +18,28 @@
                             <h2>Buscar Producto por</h2>
                         </div>
                     </div>
-                    <form #exampleForm="ngForm" class=" grid  gap-4">
+                    <form #exampleForm="ngForm" class=" grid  gap-4" (submit)="consultaProducto()">
                         <div class="grid card flex justify-center">
                             <div class="flex flex-wrap gap-4 sm:col-12 md:col-12 lg:col-12 xl:col-12">
                                 <div class="flex items-center">
                                     <p-radiobutton name="pizza" value="1" [(ngModel)]="busquedaui.ingredient"
-                                        inputId="size_large" size="large" />
+                                        (ngModelChange)="onCambioOpcion($event)" inputId="size_large" size="large" />
                                     <label for="ingredient1" class="ml-2">Codigo de barras</label>
                                 </div>
                                 <div class="flex items-center">
                                     <p-radiobutton name="pizza" value="2" [(ngModel)]="busquedaui.ingredient"
-                                        inputId="size_large" size="large" />
+                                        (ngModelChange)="onCambioOpcion($event)" inputId="size_large" size="large" />
                                     <label for="ingredient2" class="ml-2">Nombre de Producto</label>
                                 </div>
                                 <div class="flex items-center">
                                     <p-radiobutton name="pizza" value="3" [(ngModel)]="busquedaui.ingredient"
-                                        inputId="size_large" size="large" />
+                                        (ngModelChange)="onCambioOpcion($event)" inputId="size_large" size="large" />
                                     <label for="ingredient3" class="ml-2">Descripción</label>
                                 </div>
                             </div>
-                            <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-4 divTex" [ngClass]="{'ocultar-div': busquedaui.inputBusqueda}">
-                                <p-floatLabel variant="on" class="w-full">
+                            <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-4 divTex flex flex-row flex-wrap divInput "
+                                [ngClass]="{'ocultar-div': busquedaui.inputBusqueda}">
+                                <p-floatLabel variant="on">
                                     <input pInputText type="text" id="username" aria-describedby="username-help"
                                         name="username" [(ngModel)]="busquedaui.user" #username="ngModel"
                                         [invalid]="username.invalid && (username.touched || exampleForm.submitted)"
@@ -45,15 +49,26 @@
 
                                 <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
                                     {{busquedaui.textoSamall}}</small>
+
                                 @if (username.invalid && (username.touched || exampleForm.submitted)) {
                                 <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
                                     producto
                                     requerido.</p-message>
                                 }
+                                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12 lex flex-wrap gap-4 justify-center">
+                                    <p-button type="submitted" label="Buscar" icon="pi pi-search" iconPos="top"
+                                        severity="contrast" />
+                                </div>
                             </div>
                         </div>
                     </form>
                 </div>
+            </div>
+
+            <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12"
+                [ngClass]="{'ocultar-div' : busquedaui.listarProductos}">
+                <app-lista-productos [nombreTitulo]="busquedaui.nombreTitulo"
+                    [vistaBotonera]="busquedaui.vistaBotonera"></app-lista-productos>
             </div>
         </div>
     </div>

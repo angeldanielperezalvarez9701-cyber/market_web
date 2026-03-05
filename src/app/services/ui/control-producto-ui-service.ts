@@ -9,6 +9,7 @@ export class ControlProductoUiService {
   contenedorFormulario: boolean = true;
   buscaProducto: boolean = true;
   listarProductos: boolean = true;
+  contenedorInventario:boolean=true;
 
 
   mostrarFomulario() {
@@ -24,5 +25,31 @@ export class ControlProductoUiService {
   mostartListaProducto(){
     this.contenedorPricipla = true;
     this.listarProductos=false;
+  }
+
+  mostarInventario(){
+    this.contenedorPricipla = true;
+    this.contenedorInventario=false
+  }
+
+  muestraContenedorPrincipal(modulo:string){
+
+    if("buscaProducto" === modulo){
+       this.buscaProducto=true
+    }
+
+    if("formulario" === modulo){
+      this.contenedorFormulario=true;
+    }
+
+    if("listaProducto" === modulo){
+      this.listarProductos=true;
+    }
+
+    if("inventario" === modulo){
+      this.contenedorInventario=true;
+    }
+    this.contenedorPricipla=false;
+
   }
 }
