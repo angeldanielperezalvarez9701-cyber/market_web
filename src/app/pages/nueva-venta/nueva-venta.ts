@@ -3,6 +3,7 @@ import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { ToastModule } from 'primeng/toast';
 import { Producto } from '../../model/Producto';
+import { TipoProducto } from '../../model/TipoProducto';
 
 
 @Component({
@@ -15,20 +16,35 @@ import { Producto } from '../../model/Producto';
 export class NuevaVenta implements OnInit {
  
 
+  //cantidad=1;
+  cantidad:number =1;
   products: Array<Producto> = [];
 
   ngOnInit(): void {
     
-    const p:Producto={
+  const tp:TipoProducto ={
+        idTipoProducto:1,
+        nombre:"Lacteos",
+        descripcionProducto:"Grupo de Lacteos"
+  
+      };
+      
+        const p:Producto={
+      
+        idProducto:1,
+        nombreProducto:"leche",
+        descripcionProducto:"",
+        precioProducto:23,
+        pesoProducto:"1lt",
+        marcaProducto:"Alpura",
+        codigoBarrasProducto:"00014456",
+        subtipoProducto:"Leche",
+        statusProducto:"a",
+        tipoProducto:tp,
+        total:50,
     
-      producto:"leche",
-      cantidad:2,
-      preciosUnidad:25,
-      total:50,
-      id:1
-
-
-    }
+      }
+  
     this.products.push(p);
   }
 }

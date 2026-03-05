@@ -1,0 +1,79 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi-list-check"></i>Lista de Producto</h1>
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <div class="card divSombreados">
+                        <p-table #dt2 [value]="products" dataKey="idProducto" [rows]="10"
+                            [loading]="listaProductoUi.loading" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
+                             [globalFilterFields]="['products.nombreProducto', 'products.codigoBarrasProducto', 'status']"
+                            [tableStyle]="{ 'min-width': '60rem' }">
+                            <ng-template #caption>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold mt-2">Productos</span>
+                                    <p-button icon="pi pi-refresh" class="ml-4 " rounded raised />
+                                    <p-iconfield iconPosition="left" class="ml-auto">
+                                        <p-inputicon>
+                                            <i class="pi pi-search"></i>
+                                        </p-inputicon>
+                                        <input pInputText type="text"
+                                            (input)="dt2.filterGlobal($event.target.value, 'contains')"
+                                            placeholder="Buscar producto" />
+                                    </p-iconfield>
+                                </div>
+                            </ng-template>
+                            <ng-template #header>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Codigo de Barras</th>
+                                    <th>Imagen</th>
+                                    <th>Tamaño</th>
+                                    <th>Precio</th>
+                                    <th>Disponibilidad</th>
+                                    <th>Eliminar</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template #body let-product>
+                                <tr>
+                                    <td><strong>{{ product.nombreProducto }}</strong></td>
+                                    <td><strong>{{ product.codigoBarrasProducto }}</strong></td>
+                                    <td class="divIma">
+                                        <img class="imagenTabla" [src]="'/img/alpuraDeslac-Photoroom.png'"
+                                            [alt]="product.name" class="w-24 rounded" />
+                                    </td>
+                                    <td><strong>{{ product.pesoProducto}}</strong></td>
+                                    <td><strong>{{ product.precioProducto | currency: 'USD' }}</strong></td>
+                                    <td>
+                                        <p-tag [value]="product.statusProducto"
+                                            [severity]="getSeverity(product.statusProducto)" />
+                                    </td>
+                                      <td class="text-center">
+                                        <p-button icon="pi pi-trash" severity="secondary" rounded />
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template #footer>
+                                <tr>
+                                    <td colspan="6">In total there are {{ products ? products.length : 0 }} products.
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template #emptymessage>
+                                <tr>
+                                    <td colspan="5">No customers found.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

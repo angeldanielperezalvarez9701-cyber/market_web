@@ -1,0 +1,84 @@
+import { Component, OnInit, ViewEncapsulation} from '@angular/core';
+import { TableModule } from 'primeng/table';
+import { FormsModule } from '@angular/forms';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
+import { ButtonModule } from 'primeng/button';
+import { RatingModule } from 'primeng/rating';
+import { TagModule } from 'primeng/tag';
+import { ListaProductosUi } from './lista-productos-ui';
+import { Producto } from '../../../../model/Producto';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { TipoProducto } from '../../../../model/TipoProducto';
+import { InputTextModule } from 'primeng/inputtext';
+import { CurrencyPipe } from '@angular/common';
+@Component({
+  selector: 'app-lista-productos',
+  imports: [ButtonModule, RatingModule, TableModule, TagModule, FormsModule,ConfirmDialogModule,IconFieldModule,InputIconModule,InputTextModule,CurrencyPipe],
+  templateUrl: './lista-productos.html',
+  styleUrl: './lista-productos.css',
+  standalone: true,
+  encapsulation: ViewEncapsulation.None
+})
+export class ListaProductos implements OnInit {
+
+  listaProductoUi  = new ListaProductosUi();
+  products: Array<Producto> = [];
+
+  ngOnInit(): void {
+        
+    this.llenaProducto();
+    this.listaProductoUi.columnasTabla();
+
+  }
+
+  /** 
+   * Temporal en lo que consumo el servicio
+   */
+
+  llenaProducto(){
+
+    const tp:TipoProducto ={
+      idTipoProducto:1,
+      nombre:"Lacteos",
+      descripcionProducto:"Grupo de Lacteos"
+
+    };
+    
+      const p:Producto={
+    
+      idProducto:1,
+      nombreProducto:"Leche Alpura Deslactosada",
+      descripcionProducto:"",
+      precioProducto:23,
+      pesoProducto:"1lt",
+      marcaProducto:"Alpura",
+      codigoBarrasProducto:"00014456",
+      subtipoProducto:"Leche",
+      statusProducto:"INSTOCK",
+      tipoProducto:tp,
+      total:50,
+  
+    }
+
+    this.products.push(p);
+
+
+  }
+
+  getSeverity(status: string) {
+        switch (status) {
+            case 'INSTOCK':
+                return 'success';
+            case 'LOWSTOCK':
+                return 'warn';
+            case 'OUTOFSTOCK':
+                return 'danger';
+        }
+
+          return undefined;
+    }
+
+    
+
+}

@@ -1,0 +1,169 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi pi-save"></i>Guardar Producto</h1>
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+                    <form #exampleForm="ngForm" class=" grid  gap-4">
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="username" aria-describedby="username-help"
+                                    name="username" [(ngModel)]="user" #username="ngModel"
+                                    [invalid]="username.invalid && (username.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Nombre de producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del producto
+                                requerido.</p-message>
+                            }
+                        </div>
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="username" aria-describedby="username-help"
+                                    name="username" [(ngModel)]="user" #username="ngModel"
+                                    [invalid]="username.invalid && (username.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Marca del producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el marca
+                                del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del producto
+                                requerido.</p-message>
+                            }
+                        </div>
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="username" aria-describedby="username-help"
+                                    name="username" [(ngModel)]="user" #username="ngModel"
+                                    [invalid]="username.invalid && (username.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Tamaño producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                tamaño del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del producto
+                                requerido.</p-message>
+                            }
+                        </div>
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-inputnumber [(ngModel)]="precioProducto" mode="currency" inputId="currency-mexico"
+                                    currency="MXN" locale="es-MX" locale="de-DE" name="username" [(ngModel)]="user"
+                                    #username="ngModel"
+                                    [invalid]="username.invalid && (username.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Precio del producto</label>
+                            </p-floatLabel>
+
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                precio del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Precio del producto
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="on_label" [(ngModel)]="value" rows="5" cols="30" name="username"
+                                    [(ngModel)]="user" #username="ngModel"
+                                    [invalid]="username.invalid && (username.touched || exampleForm.submitted)" required
+                                    style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Descripción del producto producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción del
+                                producto
+                                requerida.</p-message>
+                            }
+
+                        </div>
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-select [options]="tipoProducto" [(ngModel)]="selectedCity" optionLabel="nombre"
+                                    class="w-full md:w-56" />
+                                <label for="on_label">Seelcciona el tipo de producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción del
+                                producto
+                                requerida.</p-message>
+                            }
+
+                        </div>
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="username" aria-describedby="username-help"
+                                    name="username" [(ngModel)]="user" #username="ngModel"
+                                    [invalid]="username.invalid && (username.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Tamaño producto.<strong>Especifica La unidad de medida (kg, lt o
+                                        gr)</strong></label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                tamaño del producto</small>
+                            @if (username.invalid && (username.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del producto
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+                            <p-toast />
+                            <p-fileupload name="demo[]" url="https://www.primefaces.org/cdn/api/upload.php"
+                                class="w-full" (onUpload)="onUpload($event)" [multiple]="true" accept="image/*"
+                                maxFileSize="1000000" mode="advanced" chooseLabel="Seleccionar" uploadLabel="Subir"
+                                cancelLabel="Cancelar">
+                                <ng-template #empty>
+                                    <div>Selecciona una imagen para el producto</div>
+                                </ng-template>
+                            </p-fileupload>
+                        </div>
+
+                        <div class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center">
+                            <div class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-center flex-wrap">
+                                <div class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center" >
+                                    <p-button class="w-full" label="Guardar producto" severity="contrast" type="submit"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true" />
+                                </div>
+                                <div class="botonCancelar bt sm:col-12 md:col-6 lg:col-6 xl:col-6   flex justify-content-center">
+                                    <p-button class="w-full" label="Cancelar" severity="secondary"
+                                        [rounded]="true" icon="pi pi-trash" [raised]="true" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

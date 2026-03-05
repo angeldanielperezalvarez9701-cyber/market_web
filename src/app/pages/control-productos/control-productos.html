@@ -1,0 +1,65 @@
+<div class="container mx-auto">
+    <div class="grid flex justify-content-center">
+
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10" [ngClass]="{'ocultar-div' : ui.contenedorPricipla}">
+
+             <div class="grid titulo flex justify-content-center mt-1 ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi-tags"></i>Control De Productos</h1>
+                </div>
+            </div>
+
+            <div class="grid sear flex justify-content-center mt-3">
+
+                <div class="grid control-producto sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    
+                    <div class="ver-productos caja-producto mr-3 sm:col-12 md:col-6 lg:col-6 xl:col-6 flex justify-content-center flex-wrap align-items-center"
+                     (click)="listarProducto($event)">
+                        <div class="descripcion">
+                            <h2 class="des-text">Ver Lista de productos</h2>
+                            <p class="des-text">Para ver los productos en existencia da click</p>
+                        </div>
+                    </div>
+                    <div class="grid sm:col-12 md:col-6 lg:col-6 xl:col-6 flex flex-column">
+                        <div class="control-producto-div caja-producto div-grup col-12 md:col-12 lg:col-12 xl:col-12 flex justify-content-center flex-wrap align-items-center"
+                        (click)="formularioProducto($event)">
+                            <div class="descripcion">
+                                <h2 class="des-text">Agragar productos</h2>
+                                <p class="des-text">Para dar de alta un nuevo producto da click</p>
+                            </div>
+                        </div>
+
+                         <div class="control-producto-div caja-producto busqueda-prod  div-grup col-12 md:col-12 lg:col-12 xl:col-12 flex justify-content-center flex-wrap align-items-center"
+                         (click)="buscarProducto($event)">
+                            <div class="descripcion">
+                                <h2 class="des-text">Buscar Producto</h2>
+                                <p class="des-text">Para Buscar Un producto da click</p>
+                            </div>
+                        </div>
+                        
+                    </div>
+                </div>
+
+               
+            </div>
+
+        </div>
+
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10" [ngClass]="{'ocultar-div' : ui.contenedorFormulario}">
+            <app-form-control-producto></app-form-control-producto>
+        </div>
+
+             
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10" [ngClass]="{'ocultar-div' : ui.buscaProducto}">
+            <app-busqueda-producos></app-busqueda-producos>
+        </div>
+
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10" [ngClass]="{'ocultar-div' : ui.listarProductos}">
+            <app-lista-productos></app-lista-productos>
+        </div>
+        
+    
+
+    </div>
+
+</div>
