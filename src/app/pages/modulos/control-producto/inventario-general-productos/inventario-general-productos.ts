@@ -5,7 +5,7 @@ import { NgClass } from '@angular/common';
 import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
 @Component({
   selector: 'app-inventario-general-productos',
-  imports: [ButtonModule,NgClass],
+  imports: [ButtonModule],
   templateUrl: './inventario-general-productos.html',
   styleUrl: './inventario-general-productos.css',
 })

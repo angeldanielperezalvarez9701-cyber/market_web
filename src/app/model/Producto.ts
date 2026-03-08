@@ -12,6 +12,6 @@ export interface Producto {
     subtipoProducto: string,
     statusProducto:string,
     tipoProducto:TipoProducto,
-    total: number
+   
 
 }

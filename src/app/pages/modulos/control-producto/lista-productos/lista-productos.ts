@@ -78,7 +78,7 @@ export class ListaProductos implements OnInit {
       subtipoProducto:"Leche",
       statusProducto:"INSTOCK",
       tipoProducto:tp,
-      total:50,
+      
   
     }
 

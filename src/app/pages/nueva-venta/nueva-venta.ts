@@ -41,7 +41,7 @@ export class NuevaVenta implements OnInit {
         subtipoProducto:"Leche",
         statusProducto:"a",
         tipoProducto:tp,
-        total:50,
+    
     
       }
   

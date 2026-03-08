@@ -1,1 +1,23 @@
+.inventarioGeneral {
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("/img/inventariogeneral.webp");
+    height: 60vh;
+    border-radius: 20px;
+}
 
+.porAlmacen{
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("/img/tienda.webp");
+    height: 29.1vh;
+    border-radius: 20px;
+}
+
+.almacen{
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("/img/almacen.webp");
+    height: 29.1vh;
+    border-radius: 20px;
+}
