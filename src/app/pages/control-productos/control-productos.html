@@ -41,7 +41,7 @@
                     </div>
                     <div class="grid di-contenedor-dos sm:col-12 md:col-12 lg:col-12 xl:col-12 flex justify-content-between flex-wrap">
                         <div class="ver-productos caja-producto  sm:col-12 md:col-6 lg:col-6 xl:col-6 flex justify-content-center flex-wrap align-items-center control"
-                            (click)="listarProducto($event)">
+                            (click)="mostrarFomularioIngreso($event)">
                             <div class="descripcion">
                                 <h2 class="des-text">Reabastecimiento de productos</h2>
                                 <p class="des-text">Ingreso de mercancía da click</p>
@@ -79,6 +79,10 @@
 
         <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10" [ngClass]="{'ocultar-div' : ui.contenedorInventario}">
             <app-inventario-general-productos></app-inventario-general-productos>
+        </div>
+
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12" [ngClass]="{'ocultar-div' : ui.contenedorFormularioControlIngresoProducto}">
+            <app-form-control-ingreso-producto></app-form-control-ingreso-producto>
         </div>
 
 
