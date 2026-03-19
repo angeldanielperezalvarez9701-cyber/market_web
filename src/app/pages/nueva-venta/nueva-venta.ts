@@ -35,6 +35,7 @@ export class NuevaVenta implements OnInit {
         nombreProducto:"leche",
         descripcionProducto:"",
         precioProducto:23,
+        precioProductoCompra:20,
         pesoProducto:"1lt",
         marcaProducto:"Alpura",
         codigoBarrasProducto:"00014456",

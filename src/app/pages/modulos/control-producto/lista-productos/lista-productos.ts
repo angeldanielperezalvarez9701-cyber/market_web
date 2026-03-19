@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation,SimpleChanges} from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TableModule } from 'primeng/table';
 import { FormsModule } from '@angular/forms';
@@ -15,15 +15,17 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CurrencyPipe } from '@angular/common';
 import { Input } from '@angular/core';
 import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
+import { ApiService } from '../../../../services/api-service';
+import { EndPoitBase } from '../../../../utils/constantes/EnpoitBase';
 
 @Component({
   selector: 'app-lista-productos',
   imports: [ButtonModule, RatingModule,
-            TableModule, TagModule, 
-            FormsModule,ConfirmDialogModule,
-            IconFieldModule,InputIconModule,
-            InputTextModule,CurrencyPipe,
-            CommonModule],
+    TableModule, TagModule,
+    FormsModule, ConfirmDialogModule,
+    IconFieldModule, InputIconModule,
+    InputTextModule, CurrencyPipe,
+    CommonModule],
   templateUrl: './lista-productos.html',
   styleUrl: './lista-productos.css',
   standalone: true,
@@ -31,75 +33,52 @@ import { ControlProductoUiService } from '../../../../services/ui/control-produc
 })
 export class ListaProductos implements OnInit {
 
-   @Input() nombreTitulo!: string;
-   @Input() vistaBotonera!: boolean;
-  listaProductoUi  = new ListaProductosUi();
+  @Input() nombreTitulo!: string;
+  @Input() vistaBotonera!: boolean;
+  listaProductoUi = new ListaProductosUi();
   products: Array<Producto> = [];
- 
-  constructor(public ui: ControlProductoUiService) {}
+  endPointBase: string = EndPoitBase.URL_PRODUCTO;
+
+  constructor(public ui: ControlProductoUiService, private api: ApiService) { }
 
   ngOnInit(): void {
-        
-    this.llenaProducto();
+
+    this.listarProductos();
     this.listaProductoUi.columnasTabla();
 
   }
 
-  ngOnChanges(changes: SimpleChanges){
+  ngOnChanges(changes: SimpleChanges) {
 
-    if(this.vistaBotonera === true){
-       this.listaProductoUi.componentesElementoPadre()
+    if (this.vistaBotonera === true) {
+      this.listaProductoUi.componentesElementoPadre()
     }
-    
+    this.listarProductos();
+
   }
 
-  /** 
-   * Temporal en lo que consumo el servicio
-   */
+  listarProductos() {
 
-  llenaProducto(){
-
-    const tp:TipoProducto ={
-      idTipoProducto:1,
-      nombre:"Lacteos",
-      descripcionProducto:"Grupo de Lacteos"
-
-    };
-    
-      const p:Producto={
-    
-      idProducto:1,
-      nombreProducto:"Leche Alpura Deslactosada",
-      descripcionProducto:"",
-      precioProducto:23,
-      pesoProducto:"1lt",
-      marcaProducto:"Alpura",
-      codigoBarrasProducto:"00014456",
-      subtipoProducto:"Leche",
-      statusProducto:"INSTOCK",
-      tipoProducto:tp,
-      
-  
-    }
-
-    this.products.push(p);
-
+    var endpoint = this.endPointBase + EndPoitBase.URL_LISTA_PRODUCTO
+    this.api.getAll(endpoint).subscribe(data => {
+      this.products = data;
+    })
 
   }
 
   getSeverity(status: string) {
-        switch (status) {
-            case 'INSTOCK':
-                return 'success';
-            case 'LOWSTOCK':
-                return 'warn';
-            case 'OUTOFSTOCK':
-                return 'danger';
-        }
-
-          return undefined;
+    switch (status) {
+      case 'INSTOCK':
+        return 'success';
+      case 'LOWSTOCK':
+        return 'warn';
+      case 'OUTOFSTOCK':
+        return 'danger';
     }
 
-    
+    return undefined;
+  }
+
+
 
 }

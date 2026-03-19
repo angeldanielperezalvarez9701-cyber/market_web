@@ -16,11 +16,12 @@ import { Producto } from '../../../../model/Producto';
 import { ControlIngresoProducto } from '../../../../model/ControlIngresoProducto';
 import { UiFormControlIngresoProducto } from './ui-form-control-ingreso-producto';
 import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @Component({
   selector: 'app-form-control-ingreso-producto',
   imports: [ 
-    MessageModule, ToastModule,IconFieldModule,InputIconModule,TagModule,
+    MessageModule, ToastModule,IconFieldModule,InputIconModule,TagModule,InputNumberModule,
     ButtonModule, InputTextModule,
     FormsModule, ReactiveFormsModule,
     FloatLabelModule,
@@ -28,12 +29,15 @@ import { ControlProductoUiService } from '../../../../services/ui/control-produc
     NgClass],
   templateUrl: './form-control-ingreso-producto.html',
   styleUrl: './form-control-ingreso-producto.css',
+  encapsulation: ViewEncapsulation.None
 })
 export class FormControlIngresoProducto implements OnInit{
 
   productos :Array<Producto> = [];
+  producto : Producto = {} as Producto;
   controlIngresos: ControlIngresoProducto = {} as ControlIngresoProducto;
-
+  piezasProducto:number=0;
+  precioCompraProducto:number=0.0;
   interfazUiForm = new UiFormControlIngresoProducto();
 
   constructor(public matrizUI: ControlProductoUiService){}

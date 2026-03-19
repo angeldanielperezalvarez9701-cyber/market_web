@@ -14,8 +14,148 @@
             </div>
             <div class="grid  div-form flex justify-content-center mt-3 ">
                 <div class="grid sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                        <h2>Ingresa compras</h2>
+                    </div>
+                    <div
+                        class="formulario-producto formcontrolp sm:col-12 mb-7 mt-4 md:col-6 lg:col-6 xl:col-6 divSombreados p-5 div-recauda">
+                        <h2>Compra de  productos</h2>
+                        <form #exampleForm="ngForm" class=" grid  gap-4">
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="nombreProductoI" name="nombreProductoI"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.nombreProducto"
+                                        #nombreProductoI="ngModel" required
+                                        [invalid]="nombreProductoI.invalid && (nombreProductoI.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Nombre de producto</label>
+                                </p-floatLabel>
 
-                    <div class="productosExistentes sm:col-12 md:col-6 lg:col-6 xl:col-6">
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (nombreProductoI.invalid && (nombreProductoI.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="codigoBarrasProductoI" name="codigoBarrasProductoI"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.codigoBarrasProducto"
+                                        #codigoBarrasProductoI="ngModel" required
+                                        [invalid]="codigoBarrasProductoI.invalid && (codigoBarrasProductoI.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Codigo de Barras</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (codigoBarrasProductoI.invalid && (codigoBarrasProductoI.touched ||
+                                exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="marcaProducto" name="marcaProductoI"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.marcaProducto"
+                                        #marcaProductoI="ngModel" required
+                                        [invalid]="marcaProductoI.invalid && (marcaProductoI.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Marca del producto</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (marcaProductoI.invalid && (marcaProductoI.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="pesoProductoI" name="pesoProductoI"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.pesoProducto"
+                                        #pesoProductoI="ngModel" required
+                                        [invalid]="pesoProductoI.invalid && (pesoProductoI.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Tamaño del producto</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (pesoProductoI.invalid && (pesoProductoI.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <p-inputnumber [(ngModel)]="piezasProducto" inputId="minmax" mode="decimal"
+                                        [min]="0" [max]="100"  id="piezasProductoI"
+                                        [(ngModel)]="controlIngresos.cantidadPiezaPorPiezaProducto"
+                                        #piezasProductoI="ngModel" required
+                                        [invalid]="piezasProductoI.invalid && (piezasProductoI.touched || exampleForm.submitted)" />
+                                    <label for="on_label">cantidad de piezas a ingresar</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (piezasProductoI.invalid && (piezasProductoI.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <p-inputnumber [(ngModel)]="piezasProducto" inputId="minmax" mode="decimal"
+                                        [min]="0" [max]="100" id="piezasMayoreoProductoI"
+                                        [(ngModel)]="controlIngresos.cantidadPorMayoreoProducto"
+                                        #piezasMayoreoProductoI="ngModel" required
+                                        [invalid]="piezasMayoreoProductoI.invalid && (piezasMayoreoProductoI.touched || exampleForm.submitted)" />
+                                    <label for="on_label">cantidad de piezas a ingresar</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (piezasMayoreoProductoI.invalid && (piezasMayoreoProductoI.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                             <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                     <p-inputnumber [(ngModel)]="precioCompraProducto"  inputId="currency-us" mode="currency" currency="USD" locale="en-US"  id="precioCompraProductoI"
+                                      [(ngModel)]="producto.precioProductoCompra"
+                                        #precioCompraProductoI="ngModel" required
+                                        [invalid]="precioCompraProductoI.invalid && (precioCompraProductoI.touched || exampleForm.submitted)" 
+                                        />
+
+                                    <label for="on_label">Precio de producto al</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (precioCompraProductoI.invalid && (precioCompraProductoI.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                       <div class="productosExistentes sm:col-12 md:col-6 lg:col-6 xl:col-6 div-recauda mt-4  ">
                         <div class="card divSombreados">
                             <p-table #dt2 [value]="productos" dataKey="idProducto" [rows]="10"
                                 [loading]="interfazUiForm.loading" [paginator]="true"
@@ -78,29 +218,191 @@
                             </p-table>
                         </div>
                     </div>
-                        <div class="formulario-producto formcontrolp sm:col-12 md:col-6 lg:col-6 xl:col-6 divSombreados p-5 ">
-                            <form #exampleForm="ngForm" class=" grid  gap-4">
-                                <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
-                                    <p-floatLabel variant="on" class="w-full">
-                                        <input pInputText type="text" id="cantidadPiezas" name="cantidadPiezas"
-                                            aria-describedby="cantidad-help"
-                                            [(ngModel)]="controlIngresos.cantidadPiezaPorPiezaProducto"
-                                            #cantidadPiezas="ngModel" required
-                                            [invalid]="cantidadPiezas.invalid && (cantidadPiezas.touched || exampleForm.submitted)" />
-                                        <label for="on_label">Nombre de producto</label>
-                                    </p-floatLabel>
+                    <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                        <h2>Ingresar productos a almacen / tienda</h2>
+                    </div>
+                    <div
+                        class="formulario-producto formcontrolp sm:col-12 md:col-6 lg:col-6 xl:col-6 mt-4 divSombreados p-5 div-recauda">
+                        <h2>Ingresa productos</h2>
+                        <form #exampleForm="ngForm" class=" grid  gap-4">
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="nombreProducto" name="nombreProducto"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.nombreProducto"
+                                        #nombreProducto="ngModel" required
+                                        [invalid]="nombreProducto.invalid && (nombreProducto.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Nombre de producto</label>
+                                </p-floatLabel>
 
-                                    <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
-                                        el
-                                        nombre del producto</small>
-                                    @if (cantidadPiezas.invalid && (cantidadPiezas.touched || exampleForm.submitted)) {
-                                    <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
-                                        producto
-                                        requerido.</p-message>
-                                    }
-                                </div>
-                            </form>
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (nombreProducto.invalid && (nombreProducto.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="codigoBarrasProducto" name="codigoBarrasProducto"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.codigoBarrasProducto"
+                                        #codigoBarrasProducto="ngModel" required
+                                        [invalid]="codigoBarrasProducto.invalid && (codigoBarrasProducto.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Codigo de Barras</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (codigoBarrasProducto.invalid && (codigoBarrasProducto.touched ||
+                                exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="marcaProducto" name="marcaProducto"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.marcaProducto"
+                                        #marcaProducto="ngModel" required
+                                        [invalid]="marcaProducto.invalid && (marcaProducto.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Marca del producto</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (marcaProducto.invalid && (marcaProducto.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <input pInputText type="text" id="pesoProducto" name="pesoProducto"
+                                        aria-describedby="cantidad-help" [(ngModel)]="producto.pesoProducto"
+                                        #pesoProducto="ngModel" required
+                                        [invalid]="pesoProducto.invalid && (pesoProducto.touched || exampleForm.submitted)" />
+                                    <label for="on_label">Tamaño del producto</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (pesoProducto.invalid && (pesoProducto.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <p-inputnumber [(ngModel)]="piezasProducto" inputId="minmax" mode="decimal"
+                                        [min]="0" [max]="100"
+                                        [(ngModel)]="controlIngresos.cantidadPiezaPorPiezaProducto"
+                                        #cantidadPiezas="ngModel" required
+                                        [invalid]="cantidadPiezas.invalid && (cantidadPiezas.touched || exampleForm.submitted)" />
+                                    <label for="on_label">cantidad de piezas a ingresar</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (cantidadPiezas.invalid && (cantidadPiezas.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                            <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                                <p-floatLabel variant="on" class="w-full">
+                                    <p-inputnumber [(ngModel)]="piezasProducto" inputId="minmax" mode="decimal"
+                                        [min]="0" [max]="100"
+                                        [(ngModel)]="controlIngresos.cantidadPorMayoreoProducto"
+                                        #cantidadPorMayoreoProducto="ngModel" required
+                                        [invalid]="cantidadPorMayoreoProducto.invalid && (cantidadPorMayoreoProducto.touched || exampleForm.submitted)" />
+                                    <label for="on_label">cantidad de piezas a ingresar</label>
+                                </p-floatLabel>
+
+                                <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                    el
+                                    nombre del producto</small>
+                                @if (cantidadPorMayoreoProducto.invalid && (cantidadPorMayoreoProducto.touched || exampleForm.submitted)) {
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                    producto
+                                    requerido.</p-message>
+                                }
+                            </div>
+                        </form>
+                    </div>
+                    <div class="productosExistentes sm:col-12 md:col-6 lg:col-6 xl:col-6 div-recauda mt-4">
+                        <div class="card divSombreados">
+                            <p-table #dt2 [value]="productos" dataKey="idProducto" [rows]="10"
+                                [loading]="interfazUiForm.loading" [paginator]="true"
+                                [rowsPerPageOptions]="[10, 25, 50]"
+                                [globalFilterFields]="['productos.nombreProducto', 'productos.codigoBarrasProducto', 'status']"
+                                [tableStyle]="{ 'min-width': '60rem' }">
+                                <ng-template #caption>
+                                    <div class="flex items-center justify-between">
+                                        <span class="text-xl font-bold mt-2">Productos</span>
+                                        <p-iconfield iconPosition="left" class="ml-auto">
+                                            <p-inputicon>
+                                                <i class="pi pi-search"></i>
+                                            </p-inputicon>
+                                            <input pInputText type="text"
+                                                (input)="dt2.filterGlobal($event.target.value, 'contains')"
+                                                placeholder="Buscar producto" />
+                                        </p-iconfield>
+                                    </div>
+                                </ng-template>
+                                <ng-template #header>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Codigo de Barras</th>
+                                        <th>Precio</th>
+                                        <th>Disponibilidad</th>
+                                        <th>Ingresar compras</th>
+                                    </tr>
+                                </ng-template>
+                                <ng-template #body let-product>
+                                    <tr>
+                                        <td><strong>{{ product.nombreProducto }}</strong></td>
+                                        <td><strong>{{ product.codigoBarrasProducto }}</strong></td>
+
+                                        <td><strong>{{ product.pesoProducto}}</strong></td>
+                                        <td><strong>{{ product.precioProducto }}</strong></td>
+                                        <td>
+                                            <p-tag [value]="product.statusProducto"
+                                                [severity]="getSeverity(product.statusProducto)" />
+                                        </td>
+                                        <td class="text-center">
+                                            <p-button icon="pi pi-trash" severity="secondary" rounded />
+                                        </td>
+                                        <td class="text-center">
+                                            <p-button icon="pi pi-pen-to-square" severity="secondary" rounded />
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template #footer>
+                                    <tr>
+                                        <td colspan="6">In total there are {{ productos ? productos.length : 0 }}
+                                            products.
+                                        </td>
+                                    </tr>
+                                </ng-template>
+                                <ng-template #emptymessage>
+                                    <tr>
+                                        <td colspan="5">No customers found.</td>
+                                    </tr>
+                                </ng-template>
+                            </p-table>
                         </div>
+                    </div>
+
 
                 </div>
             </div>
