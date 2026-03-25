@@ -22,30 +22,6 @@ export class NuevaVenta implements OnInit {
 
   ngOnInit(): void {
     
-  const tp:TipoProducto ={
-        idTipoProducto:1,
-        nombre:"Lacteos",
-        descripcionProducto:"Grupo de Lacteos"
-  
-      };
-      
-        const p:Producto={
-      
-        idProducto:1,
-        nombreProducto:"leche",
-        descripcionProducto:"",
-        precioProducto:23,
-        precioProductoCompra:20,
-        pesoProducto:"1lt",
-        marcaProducto:"Alpura",
-        codigoBarrasProducto:"00014456",
-        subtipoProducto:"Leche",
-        statusProducto:"a",
-        tipoProducto:tp,
-    
-    
-      }
-  
-    this.products.push(p);
+
   }
 }

@@ -21,3 +21,14 @@
   align-items: center !important;
   background-color: aqua;
 }
+
+.botonAceptrar p-splitbutton button,
+.botonCancelar p-splitbutton button {
+    width: 100%;
+}
+
+.p-splitbutton{
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}

@@ -6,16 +6,29 @@
                 <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
                     <h1><i class="pi pi-list-check"></i>{{listaProductoUi.texttoTitulo}}</h1>
                 </div>
-                 <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
-                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary" (onClick)="ui. muestraContenedorPrincipal('listaProducto')"  [ngClass]="{'ocultar-div' : listaProductoUi.botonera}"/>
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary"
+                        (onClick)="ui. muestraContenedorPrincipal('listaProducto')"
+                        [ngClass]="{'ocultar-div' : listaProductoUi.botonera}" />
                 </div>
             </div>
 
             <div class="grid  div-form flex justify-content-center mt-3 ">
                 <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <div class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center"
+                        [ngClass]="{'ocultar-div' : listaProductoUi.botonera}">
+                        <div class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-end flex-wrap">
+                            <div  class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                                  <p-splitbutton label="Agregar Producto" (onClick)="agregarProducto()"
+                                  [model]="items" severity="contrast" [rounded]="true" icon="pi pi-check-circle"/>
+        
+                            </div>
+                        </div>
+                    </div>
                     <div class="card divSombreados">
-                        <p-table #dt2 [value]="products" dataKey="idProducto" [rows]="10"
-                            [loading]="listaProductoUi.loading" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
+                        
+                        <p-table #dt2 [value]="ui.products()" dataKey="idProducto" [rows]="10"
+                            [loading]="ui.loading" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
                             [globalFilterFields]="['products.nombreProducto', 'products.codigoBarrasProducto', 'status']"
                             [tableStyle]="{ 'min-width': '60rem' }">
                             <ng-template #caption>
@@ -26,7 +39,7 @@
                                         <p-inputicon>
                                             <i class="pi pi-search"></i>
                                         </p-inputicon>
-                                        <input pInputText type="text"
+                                        <input pInputText type="text" class="inputText"
                                             (input)="dt2.filterGlobal($event.target.value, 'contains')"
                                             placeholder="Buscar producto" />
                                     </p-iconfield>
@@ -45,30 +58,35 @@
                                 </tr>
                             </ng-template>
                             <ng-template #body let-product>
+                                @if (product.existenciaLogica) {
                                 <tr>
                                     <td><strong>{{ product.nombreProducto }}</strong></td>
                                     <td><strong>{{ product.codigoBarrasProducto }}</strong></td>
                                     <td class="divIma">
-                                        <img class="imagenTabla" [src]="'/img/alpuraDeslac-Photoroom.png'"
+                                        <img class="imagenTabla"
+                                            [src]="product.imagenProducto ? serviceProduco.convertirBytesAImagen(product.imagenProducto) : '/img/alpuraDeslac-Photoroom.png'"
                                             [alt]="product.name" class="w-24 rounded" />
                                     </td>
                                     <td><strong>{{ product.pesoProducto}}</strong></td>
                                     <td><strong>{{ product.precioProducto | currency: 'USD' }}</strong></td>
                                     <td>
-                                        <p-tag [value]="product.statusProducto"
-                                            [severity]="getSeverity(product.statusProducto)" />
+                                        <p-tag [value]="product.stockGeneral"
+                                            [severity]="listaProductoUi.getSeverity(product.statusProducto)" />
                                     </td>
                                     <td class="text-center">
-                                        <p-button icon="pi pi-trash" severity="secondary" rounded />
+                                        <p-button icon="pi pi-trash" severity="secondary" rounded
+                                            (click)="confirm($event,product)" />
                                     </td>
                                     <td class="text-center">
-                                        <p-button icon="pi pi-pen-to-square" severity="secondary" rounded />
+                                        <p-button icon="pi pi-pen-to-square" severity="secondary" rounded
+                                            (onClick)="updateProducto(product)" />
                                     </td>
                                 </tr>
+                                }
                             </ng-template>
                             <ng-template #footer>
                                 <tr>
-                                    <td colspan="6">In total there are {{ products ? products.length : 0 }} products.
+                                    <td colspan="6">In total there are {{ ui.products() ? ui.products.length : 0 }} products.
                                     </td>
                                 </tr>
                             </ng-template>
@@ -79,19 +97,76 @@
                             </ng-template>
                         </p-table>
                     </div>
-                    <div
-                        class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center" [ngClass]="{'ocultar-div' : listaProductoUi.botonera}">
-                        <div
-                            class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-end flex-wrap">
-                            <div
-                                class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
-                                <p-button class="w-full" label="Agregar Producto" severity="contrast" type="submit"
-                                    [rounded]="true" icon="pi pi-check-circle" [raised]="true" />
-                            </div>
-                        </div>
+
+                    <hr class="mt-7">
+
+                     <div class="titiloTipoPro mt-6">
+                        <h2>Lista Tipo Producto</h2>
                     </div>
+                    <div class="card divSombreados mt-4">
+                        <p-table #dt2 [value]="ui.listaTipoProducto()" dataKey="idProducto" [rows]="10"
+                            [loading]="ui.loading" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
+                            [globalFilterFields]="['products.nombreProducto', 'products.codigoBarrasProducto', 'status']"
+                            [tableStyle]="{ 'min-width': '60rem' }">
+                            <ng-template #caption>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold mt-2">Tipo producto</span>
+                                    <p-button icon="pi pi-refresh" class="ml-4 " rounded raised />
+                                    <p-iconfield iconPosition="left" class="ml-auto">
+                                        <p-inputicon>
+                                            <i class="pi pi-search"></i>
+                                        </p-inputicon>
+                                        <input pInputText type="text" class="inputText"
+                                            (input)="dt2.filterGlobal($event.target.value, 'contains')"
+                                            placeholder="Buscar producto" />
+                                    </p-iconfield>
+                                </div>
+                            </ng-template>
+                            <ng-template #header>
+                                <tr>
+                                    <th>Nombre Tipo producto</th>
+                                    <th>Descripción</th>
+                                    <th>Eliminar</th>
+                                    <th>Editar</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template #body let-tipoProduct>
+                                <tr>
+                                    <td><strong>{{ tipoProduct.nombreTipoProducto }}</strong></td>
+                                    <td><strong>{{ tipoProduct.descripcionProducto }}</strong></td>
+                                    <td class="text-center">
+                                        <p-button icon="pi pi-trash" severity="secondary" rounded
+                                            (click)="confirmTipoProduto($event,tipoProduct)" />
+                                    </td>
+                                    <td class="text-center">
+                                        <p-button icon="pi pi-pen-to-square" severity="secondary" rounded
+                                            (onClick)="updateTipoPoucto(tipoProduct)" />
+                                    </td>
+                                </tr>
+                                
+                            </ng-template>
+                            <ng-template #footer>
+                                <tr>
+                                    <td colspan="6">In total there are {{ ui.listaTipoProducto() ? ui.listaTipoProducto.length : 0 }} products.
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template #emptymessage>
+                                <tr>
+                                    <td colspan="5">No customers found.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
                 </div>
             </div>
+
         </div>
+
+          
     </div>
+
+   
+
 </div>

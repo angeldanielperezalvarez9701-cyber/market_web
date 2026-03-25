@@ -1,0 +1,86 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi pi-save"></i>Tipo Producto</h1>
+                </div>
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary"
+                        (onClick)="ui.muestraContenedorPrincipal('muestraListaOcultaTipoP')" />
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+                    <form #exampleForm="ngForm" class=" grid  gap-4" (ngSubmit)="onSubmit(exampleForm)">
+
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="nombreTipoProducto" aria-describedby="username-help"
+                                    name="nombreTipoProducto" [(ngModel)]="ui.tipoProducto.nombreTipoProducto"
+                                    #nombreTipoProducto="ngModel"
+                                    [invalid]="nombreTipoProducto.invalid && (nombreTipoProducto.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Nombre tipo producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del producto</small>
+                            @if (nombreTipoProducto.invalid && (nombreTipoProducto.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del tipo
+                                producto
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="descripcionProducto" aria-describedby="username-help"
+                                    name="descripcionProducto" [(ngModel)]="ui.tipoProducto.descripcionProducto"
+                                    #descripcionProducto="ngModel"
+                                    [invalid]="descripcionProducto.invalid && (descripcionProducto.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Descripción tipo producto</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del producto</small>
+                            @if (descripcionProducto.invalid && (descripcionProducto.touched || exampleForm.submitted))
+                            {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción del tipo
+                                producto
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div
+                            class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center">
+                            <div
+                                class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-center flex-wrap">
+                                <div
+                                    class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                                    <p-button class="w-full" label="Guardar producto" severity="contrast" type="submit"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true" />
+                                </div>
+                                <div
+                                    class="botonCancelar bt sm:col-12 md:col-6 lg:col-6 xl:col-6   flex justify-content-center">
+                                    <p-button class="w-full" label="Cancelar" severity="secondary" [rounded]="true"
+                                        type="button" (onClick)="limpiar(exampleForm)" icon="pi pi-trash"
+                                        [raised]="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+      
+        <div class="card flex justify-center gap-2">
+            <p-toast />
+            <p-confirmdialog />
+        </div>
+    </div>
+
+</div>

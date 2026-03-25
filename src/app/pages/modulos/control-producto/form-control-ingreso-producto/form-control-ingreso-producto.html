@@ -21,6 +21,7 @@
                         class="formulario-producto formcontrolp sm:col-12 mb-7 mt-4 md:col-6 lg:col-6 xl:col-6 divSombreados p-5 div-recauda">
                         <h2>Compra de  productos</h2>
                         <form #exampleForm="ngForm" class=" grid  gap-4">
+                            <!--
                             <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
                                 <p-floatLabel variant="on" class="w-full">
                                     <input pInputText type="text" id="nombreProductoI" name="nombreProductoI"
@@ -60,7 +61,7 @@
                             </div>
                             <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
                                 <p-floatLabel variant="on" class="w-full">
-                                    <input pInputText type="text" id="marcaProducto" name="marcaProductoI"
+                                    <input pInputText type="text" id="marcaProductoI" name="marcaProductoI"
                                         aria-describedby="cantidad-help" [(ngModel)]="producto.marcaProducto"
                                         #marcaProductoI="ngModel" required
                                         [invalid]="marcaProductoI.invalid && (marcaProductoI.touched || exampleForm.submitted)" />
@@ -89,7 +90,7 @@
                                     el
                                     nombre del producto</small>
                                 @if (pesoProductoI.invalid && (pesoProductoI.touched || exampleForm.submitted)) {
-                                <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                <p-message severity="error" size="small" variant="simple" class="pl-2">Tamaño del
                                     producto
                                     requerido.</p-message>
                                 }
@@ -153,6 +154,7 @@
                                     requerido.</p-message>
                                 }
                             </div>
+                        -->
                         </form>
                     </div>
                        <div class="productosExistentes sm:col-12 md:col-6 lg:col-6 xl:col-6 div-recauda mt-4  ">
@@ -225,6 +227,7 @@
                         class="formulario-producto formcontrolp sm:col-12 md:col-6 lg:col-6 xl:col-6 mt-4 divSombreados p-5 div-recauda">
                         <h2>Ingresa productos</h2>
                         <form #exampleForm="ngForm" class=" grid  gap-4">
+                            <!--
                             <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
                                 <p-floatLabel variant="on" class="w-full">
                                     <input pInputText type="text" id="nombreProducto" name="nombreProducto"
@@ -337,6 +340,7 @@
                                     requerido.</p-message>
                                 }
                             </div>
+                        -->
                         </form>
                     </div>
                     <div class="productosExistentes sm:col-12 md:col-6 lg:col-6 xl:col-6 div-recauda mt-4">

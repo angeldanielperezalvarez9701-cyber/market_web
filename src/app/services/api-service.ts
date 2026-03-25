@@ -17,15 +17,15 @@ export class ApiService {
     return this.cliente.getById(endpoint, id);
   }
 
-  save(endpoint:string, modelo: any) {
+  save(endpoint:string, modelo: any): Observable<any> {
     return this.cliente.post(endpoint, modelo);
   }
 
-  update(endpoint:string, modelo: any) {
+  update(endpoint:string, modelo: any): Observable<any>{
     return this.cliente.put(endpoint, modelo);
   }
 
-  delete(endpoint:string, id: number) {
+  delete(endpoint:string, id: number): Observable<any> {
     return this.cliente.delete(endpoint, id);
   }
 

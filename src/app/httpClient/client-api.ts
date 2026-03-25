@@ -26,7 +26,9 @@ export class ClientApi {
   }
 
   post(url: string, body: any) {
-    return this.http.post(`${this.baseUrl}/${url}`, body);
+    return this.http.post(`${this.baseUrl}/${url}`, body,{
+      headers : this.headers
+    });
   }
 
   put(url: string, body: any) {

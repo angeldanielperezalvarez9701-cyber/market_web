@@ -2,6 +2,6 @@
 export interface TipoProducto{
 
     idTipoProducto:number,
-    nombre:string,
+    nombreTipoProducto:string,
     descripcionProducto:string
 }
