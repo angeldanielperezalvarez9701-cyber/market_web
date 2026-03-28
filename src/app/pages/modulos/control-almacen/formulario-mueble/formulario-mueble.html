@@ -1,0 +1,49 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  "
+                [ngClass]="{'ocultar-div' : ui.titulo}">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi pi-save"></i>Guardar Producto</h1>
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+
+                    <h3 class="mb-6 texto-titulo-ubi" [ngClass]="{'ocultar-div' : ui.agegaTituloExtra}">
+                        {{ui.textoTitutlo}}</h3>
+
+                    <form #exampleForm="ngForm" class=" grid gap-4" (ngSubmit)="onSubmit(exampleForm)">
+
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-select [options]="servicioMueble.repisas()"
+                                    [(ngModel)]="servicioMueble.mueble.repisas" optionLabel="nombreTipoMueble"
+                                    class="w-full md:w-56" name="nombreTipoMueble" optionValue="nombreTipoMueble"
+                                    id="nombreRepisa" #nombreRepisa="ngModel"
+                                    [invalid]="nombreRepisa.invalid && (nombreRepisa.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Seelcciona el estado o ciudad</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona la
+                                ciudad o estado de la ciudad o estadoWS </small>
+                            @if (nombreRepisa.invalid && (nombreRepisa.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Delegación
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

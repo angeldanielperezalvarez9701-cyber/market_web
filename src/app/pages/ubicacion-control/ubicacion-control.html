@@ -1,0 +1,227 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  "
+                [ngClass]="{'ocultar-div' : servicioUbi.titulo}">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi pi-save"></i>Guardar Producto</h1>
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+
+                    <h3 class="mb-6 texto-titulo-ubi" [ngClass]="{'ocultar-div' : servicioUbi.agegaTituloExtra}">
+                        {{servicioUbi.textoTitutlo}}</h3>
+
+                    <form #exampleForm="ngForm" class=" grid gap-4" (ngSubmit)="onSubmit(exampleForm)">
+
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-select [options]="ciudades"
+                                    [(ngModel)]="servicioUbi.ubicacion.ciudadEstadoUbicacion" optionLabel="name"
+                                    class="w-full md:w-56" name="ciudadEstadoUbicacion" optionValue="name"
+                                    id="ciudadEstadoUbicacion" #ciudadEstadoUbicacion="ngModel"
+                                    [invalid]="ciudadEstadoUbicacion.invalid && (ciudadEstadoUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Seelcciona el estado o ciudad</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona la
+                                ciudad o estado de la ciudad o estadoWS </small>
+                            @if (ciudadEstadoUbicacion.invalid && (ciudadEstadoUbicacion.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Delegación
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                        <div class="grid sm:col-6 md:col-6 lg:col-6 xl:col-6 divTex dd">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="calleUbicacion" aria-describedby="username-help"
+                                    name="calleUbicacion" [(ngModel)]="servicioUbi.ubicacion.calleUbicacion"
+                                    #calleUbicacion="ngModel"
+                                    [invalid]="calleUbicacion.invalid && (calleUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Calle</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                calle de la ubicacion</small>
+                            @if (calleUbicacion.invalid && (calleUbicacion.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">calle de la ubicación
+                                requerida.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-6 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="coloniaUbicacion" aria-describedby="username-help"
+                                    name="coloniaUbicacion" [(ngModel)]="servicioUbi.ubicacion.coloniaUbicacion"
+                                    #coloniaUbicacion="ngModel"
+                                    [invalid]="coloniaUbicacion.invalid && (coloniaUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Colonia</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                colonia de la ubicacion</small>
+                            @if (coloniaUbicacion.invalid && (coloniaUbicacion.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Colonia de la
+                                ubicación
+                                requerida.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-select [options]="delegaciones"
+                                    [(ngModel)]="servicioUbi.ubicacion.delegacionMunicipioUbicacion" optionLabel="name"
+                                    class="w-full md:w-56" name="name" optionValue="name"
+                                    id="delegacionMunicipioUbicacion" #delegacionMunicipioUbicacion="ngModel"
+                                    [invalid]="delegacionMunicipioUbicacion.invalid && (delegacionMunicipioUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Seelcciona la delegación</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona la
+                                delegación</small>
+                            @if (delegacionMunicipioUbicacion.invalid && (delegacionMunicipioUbicacion.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Delegación
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                        <div class=" grid sm:col-6 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="numeroInteriorUbicacion"
+                                    aria-describedby="username-help" name="numeroInteriorUbicacion"
+                                    [(ngModel)]="servicioUbi.ubicacion.numeroInteriorUbicacion"
+                                    #numeroInteriorUbicacion="ngModel"
+                                    [invalid]="numeroInteriorUbicacion.invalid && (numeroInteriorUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Numero Interior</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                numero interior del domicilio</small>
+                            @if (numeroInteriorUbicacion.invalid && (numeroInteriorUbicacion.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Numero interior de la
+                                ubicación
+                                requerida.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-6 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="numeroExteriorUbicacion"
+                                    aria-describedby="username-help" name="numeroExteriorUbicacion"
+                                    [(ngModel)]="servicioUbi.ubicacion.numeroExteriorUbicacion"
+                                    #numeroExteriorUbicacion="ngModel"
+                                    [invalid]="numeroExteriorUbicacion.invalid && (numeroExteriorUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Numero Exterior</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                numero exterior del domicilio</small>
+                            @if (numeroExteriorUbicacion.invalid && (numeroExteriorUbicacion.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Numero exterior de la
+                                ubicación
+                                requerida.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid  sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="cpUbicacion"
+                                    aria-describedby="username-help" name="cpUbicacion"
+                                    [(ngModel)]="servicioUbi.ubicacion.cpUbicacion"
+                                    #cpUbicacion="ngModel"
+                                    [invalid]="cpUbicacion.invalid && (cpUbicacion.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">CP</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                codigo postal  del domicilio</small>
+                            @if (cpUbicacion.invalid && (cpUbicacion.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">CP de la
+                                ubicación
+                                requerida.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="descripcionProductoG" rows="5" cols="30" name="username"
+                                    [(ngModel)]="servicioUbi.ubicacion.descripcionUbicacion"
+                                    #descripcionUbicacion="ngModel"
+                                    [invalid]="descripcionUbicacion.invalid && (descripcionUbicacion.touched || exampleForm.submitted)"
+                                    required style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Descripción de la ubicación</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del producto</small>
+                            @if (descripcionUbicacion.invalid && (descripcionUbicacion.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción de la
+                                ubicacion
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="notasAdicionalesUbicacion" rows="5" cols="30" name="username"
+                                    [(ngModel)]="servicioUbi.ubicacion.notasAdicionalesUbicacion"
+                                    #notasAdicionalesUbicacion="ngModel" style="resize: none"
+                                    class="h-full w-full"></textarea>
+                                <label for="on_label">Notas adicionales de la ubicación</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce las
+                                Notas adicionales de la ubicación</small>
+                        </div>
+                        <div
+                            class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-start">
+                            <div
+                                class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-center flex-wrap">
+                                <div
+                                    class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                                    <p-button class="w-full" label="Guardar Ubicación" severity="contrast" type="submit"
+                                        [ngClass]="{'ocultar-div' : servicioUbi.botonOrigen}" [rounded]="true"
+                                        icon="pi pi-check-circle" [raised]="true" />
+
+                                    <p-button class="w-full" label="Guardar Ubicación Desde Almacen" severity="contrast"
+                                        type="submit" [ngClass]="{'ocultar-div' : servicioUbi.botonLlamado}"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true" />
+                                </div>
+                                <div
+                                    class="botonCancelar bt sm:col-12 md:col-6 lg:col-6 xl:col-6   flex justify-content-center">
+                                    <p-button class="w-full" label="Cancelar" severity="secondary" [rounded]="true"
+                                        type="button" (onClick)="limpiar(exampleForm)" icon="pi pi-trash"
+                                        [raised]="true" />
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

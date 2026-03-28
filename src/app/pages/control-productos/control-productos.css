@@ -83,3 +83,18 @@
 .control {
     width: 49.5% !important;
 }
+
+.control-almacen{
+    height: 29vh;
+    border-radius: 10%;
+    border-radius: 20px;
+    margin-bottom: 2.5%;
+}
+
+.ver-almacen{
+
+    
+    background-image:
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("/img/almacen.webp");
+}

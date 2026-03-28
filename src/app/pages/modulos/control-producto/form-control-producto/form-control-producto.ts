@@ -13,14 +13,13 @@ import { BadgeModule } from 'primeng/badge';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms'; //
-import { TipoProducto } from '../../../../model/TipoProducto';
 import { ControlProductoUiService } from '../../../../services/ui/control-producto-ui-service';
 import { Producto } from '../../../../model/Producto';
 import { ApiService } from '../../../../services/api-service';
 import { EndPoitBase } from '../../../../utils/constantes/EnpoitBase';
 import { FormConrolProductoUI } from './form-control-producto-ui';
 import { ServiceProducts } from '../../../../services/services-product/service-products';
-import { firstValueFrom } from 'rxjs';
+
 
 @Component({
   selector: 'app-form-control-producto',

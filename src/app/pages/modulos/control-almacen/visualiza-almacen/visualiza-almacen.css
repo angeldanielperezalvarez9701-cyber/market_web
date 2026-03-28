@@ -1,0 +1,46 @@
+.bloqueUno{
+    padding-left: 0%;
+    padding-right: 0%;
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+
+.r{
+    background-color:   rgba(10, 15, 30, 0.9);
+    border: solid 2px rgba(255, 255, 255, 0.9);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+   
+}
+
+.txt{
+     color: rgba(255, 255, 255, 0.9) !important;
+}
+
+.r{
+    height: 30vh;
+    max-height: 40vh;
+}
+
+.tab{
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+}
+
+.tab {
+   max-height: calc(35vh - 5rem); 
+    overflow-y: auto;
+    
+    /* 1. Ocultar en Firefox */
+    scrollbar-width: none; 
+    
+    /* 2. Ocultar en IE y Edge antiguo */
+    -ms-overflow-style: none; 
+}
+
+/* 3. Ocultar en Chrome, Safari y Edge moderno (WebKit) */
+.tab::-webkit-scrollbar {
+    display: none;
+}
+

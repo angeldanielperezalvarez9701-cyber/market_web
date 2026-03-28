@@ -1,5 +1,6 @@
 export interface Ubicacion{
     idUbicacion:number,
+    ciudadEstadoUbicacion:string,
     calleUbicacion:string,
     coloniaUbicacion:string,
     delegacionMunicipioUbicacion:string,
@@ -7,5 +8,5 @@ export interface Ubicacion{
     numeroExteriorUbicacion:string,
     descripcionUbicacion:string
     notasAdicionalesUbicacion:string,
-    cpUbicacion:number
+    cpUbicacion:string
 }

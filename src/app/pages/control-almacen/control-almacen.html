@@ -1,0 +1,107 @@
+<div class="container mx-auto">
+    <div class="grid flex justify-content-center">
+
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10"
+            [ngClass]="{'ocultar-div' : ui.cotenedorPrincipal}">
+
+            <div class="grid titulo flex justify-content-center mt-1 ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi-tags"></i>Control De Almacen</h1>
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3">
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+
+                    <div  class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center">
+                        <div class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-end flex-wrap">
+                            <div class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                                <p-splitbutton label="Agregar Almacén" (onClick)="agregarAlmacen()" [model]="items"
+                                    severity="contrast" [rounded]="true" icon="pi pi-check-circle" />
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card divSombreados">
+                        <p-table #dt2 [value]="serviceAlmacen.almacenes()" dataKey="idProducto" [rows]="10"
+                            [loading]="serviceAlmacen.loading" [paginator]="true" [rowsPerPageOptions]="[10, 25, 50]"
+                            [globalFilterFields]="['products.nombreProducto', 'products.codigoBarrasProducto', 'status']"
+                            [tableStyle]="{ 'min-width': '60rem' }">
+                            <ng-template #caption>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-xl font-bold mt-2">Almacenes</span>
+                                    <p-button icon="pi pi-refresh" class="ml-4 " rounded raised />
+                                    <p-iconfield iconPosition="left" class="ml-auto">
+                                        <p-inputicon>
+                                            <i class="pi pi-search"></i>
+                                        </p-inputicon>
+                                        <input pInputText type="text" class="inputText"
+                                            (input)="dt2.filterGlobal($event.target.value, 'contains')"
+                                            placeholder="Buscar Almacen" />
+                                    </p-iconfield>
+                                </div>
+                            </ng-template>
+                            <ng-template #header>
+                                <tr>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                    <th>Ubicación</th>
+                                    <th class="text-center">Eliminar</th>
+                                    <th class="text-center">Ver</th>
+                                </tr>
+                            </ng-template>
+                            <ng-template #body let-almacen>
+                                @if (almacen. eliminarAlmacen) {
+                                <tr>
+                                    <td><strong>{{ almacen.nombreAlmacen }}</strong></td>
+                                    <td><strong>{{ almacen.descripcionAlmacen ?? 'SN'}}</strong></td>
+                                    <td><strong>{{ almacen.ubicacionDTO.calleUbicacion?? 'SN'}}</strong>
+                                        <br>
+                                        {{ almacen.ubicacionDTO.coloniaUbicacion?? ''}}
+                                        <br>
+                                        {{ almacen.ubicacionDTO.delegacionMunicipioUbicacion?? ''}}
+                                    </td>
+                                    <td class="text-center">
+                                        <p-button icon="pi pi-trash" severity="secondary" rounded
+                                            (click)="confirm($event,almacen)" />
+                                    </td>
+                                    <td class="text-center ">
+                                        <p-button icon="pi pi-eye" severity="secondary" rounded
+                                            (onClick)="verAlmacen(almacen)" />
+                                    </td>
+                                </tr>
+                                }
+                            </ng-template>
+                            <ng-template #footer>
+                                <tr>
+                                    <td colspan="6">In total there are {{ serviceAlmacen.almacenes() ?
+                                        serviceAlmacen.almacenes().length : 0 }} almacenes
+                                    </td>
+                                </tr>
+                            </ng-template>
+                            <ng-template #emptymessage>
+                                <tr>
+                                    <td colspan="5">No customers found.</td>
+                                </tr>
+                            </ng-template>
+                        </p-table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="contenido sm:col-12 md:col-10 lg:col-10 xl:col-10" [ngClass]="{'ocultar-div' : ui.tipoAlmacenForm}">
+            <app-formulario-almacen></app-formulario-almacen>
+        </div>
+
+          <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12" [ngClass]="{'ocultar-div' : ui.visualizadorAlmacen}">
+            <app-visualiza-almacen></app-visualiza-almacen>
+        </div>
+    </div>
+    <div class="card flex justify-center">
+        <p-toast />
+        <p-confirmdialog />
+    </div>
+</div>

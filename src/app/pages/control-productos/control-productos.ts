@@ -9,6 +9,7 @@ import { FormControlIngresoProducto } from '../modulos/control-producto/form-con
 import { Producto } from '../../model/Producto';
 import { ControlTipoProducto } from "../modulos/control-producto/control-tipo-producto/control-tipo-producto";
 import { TipoProducto } from '../../model/TipoProducto';
+import { Router } from '@angular/router';
 
 
 
@@ -26,7 +27,7 @@ export class ControlProductos implements OnInit {
   productoSeleccionado = {} as Producto
   tipoProductoSeleccionado = {} as TipoProducto;
 
-  constructor(public ui: ControlProductoUiService) { }
+  constructor(public ui: ControlProductoUiService, public router : Router) { }
 
   ngOnInit(): void {
 
@@ -50,6 +51,10 @@ export class ControlProductos implements OnInit {
 
   mostrarFomularioIngreso(event:MouseEvent){
     this.ui.mostrarFomularioIngresos();
+  }
+
+  mostrarControlAlmacenes(event:MouseEvent){
+     this.router.navigate(['/control-almacen']);
   }
 
   recibirProducto(producto : Producto){

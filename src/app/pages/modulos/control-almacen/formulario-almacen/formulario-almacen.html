@@ -1,0 +1,143 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center mt-1  ">
+                <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <h1><i class="pi pi pi-save"></i>Guardar Producto</h1>
+                </div>
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary"
+                        (onClick)="ui.muestraLista()" />
+                </div>
+            </div>
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+                    <form #exampleForm="ngForm" class=" grid  gap-4" (ngSubmit)="onSubmit(exampleForm)">
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+
+                                <input pInputText type="text" id="nombreAlmacen" aria-describedby="username-help"
+                                    name="nombreAlmacen" [(ngModel)]="almacen.nombreAlmacen" #nombreAlmacen="ngModel"
+                                    [invalid]="nombreAlmacen.invalid && (nombreAlmacen.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Nombre de Almacén</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del producto</small>
+                            @if (nombreAlmacen.invalid && (nombreAlmacen.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del almacén
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="notasAlmacen" rows="5" cols="30" name="username"
+                                    [(ngModel)]="almacen.notasAlmacen" #notasAlmacen="ngModel"
+                                    [invalid]="notasAlmacen.invalid && (notasAlmacen.touched || exampleForm.submitted)"
+                                    required style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Notas del Almacén</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del producto</small>
+                            @if (notasAlmacen.invalid && (notasAlmacen.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Notas del
+                                almacén
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="descripcionAlmacen" rows="5" cols="30" name="username"
+                                    [(ngModel)]="almacen.descripcionAlmacen" #descripcionAlmacen="ngModel"
+                                    [invalid]="descripcionAlmacen.invalid && (descripcionAlmacen.touched || exampleForm.submitted)"
+                                    required style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Descripción del Almacén</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del almacén</small>
+                            @if (descripcionAlmacen.invalid && (descripcionAlmacen.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción del
+                                almacén
+                                requerida.</p-message>
+                            }
+                        </div>
+
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <label for="" class="ml-1 mb-2">Si existe la ubicación selecciona</label>
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-select [options]="serviceUbicacion.ubicaciones()" [(ngModel)]="almacen.ubicacionDTO"
+                                    optionLabel="notasAdicionalesUbicacion" dataKey="idUbicacion" class="w-full md:w-56"
+                                    name="notasAdicionalesUbicacion" id="ubicacionDTO" #ubicacionDTO="ngModel"
+                                    />
+                                <label for="on_label">Seelcciona la Ubicación</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona la
+                                ubicación
+                                del Almacen</small>
+                            <div class="grid pl-2  sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                <label for="" class="ml-1 mb-2 mt-3"><strong>Si no existe agrega una nueva dirección</strong></label>
+                            </div>
+
+
+                            <div class="grid agregaDireccion  sm:col-12 md:col-12 lg:col-12 xl:col-12">
+
+                                <div class="button-ubicacion sm:col-12 md:col-12 lg:col-12 xl:col-12"
+                                    [ngClass]="{'ocultar-div' : ui.botonUbicacion}">
+                                    <p-button class="w-full" label="Agregar dirección" severity="contrast" type="submit"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true" (click)="ui.contenidoUbicacion = false ; 
+                                        ui.botonUbicacion = true ;
+                                         serviceUbicacion.agegaTituloExtra = false;
+                                         serviceUbicacion.textoTitutlo = 'Ubicación Almacen' ;
+                                         serviceUbicacion.botonOrigen = true ;  
+                                         serviceUbicacion.botonLlamado =false"
+                                          />
+                                </div>
+                                
+                                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div "
+                                    [ngClass]="{'ocultar-div' : ui.contenidoUbicacion}">
+                                    <app-ubicacion-control class="n"></app-ubicacion-control>
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                        <div
+                            class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center">
+                            <div
+                                class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-center flex-wrap">
+                                <div
+                                    class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                                    <p-button class="w-full" label="Guardar producto" severity="contrast" type="submit"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true" />
+                                </div>
+                                <div
+                                    class="botonCancelar bt sm:col-12 md:col-6 lg:col-6 xl:col-6   flex justify-content-center">
+                                    <p-button class="w-full" label="Cancelar" severity="secondary" [rounded]="true"
+                                        type="button" (onClick)="limpiar(exampleForm)" icon="pi pi-trash"
+                                        [raised]="true" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

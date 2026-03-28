@@ -5,6 +5,7 @@ import { NuevaVenta } from './pages/nueva-venta/nueva-venta';
 import { Productos } from './pages/productos/productos';
 import { ControlProductos } from './pages/control-productos/control-productos';
 import { Error } from './pages/error/error';
+import { ControlAlmacen } from './pages/control-almacen/control-almacen';
 
 export const routes: Routes = [
     {
@@ -15,6 +16,7 @@ export const routes: Routes = [
             {path:'productos',component:Productos},
             {path: 'control-producto', component:ControlProductos},
             { path: 'error', component: Error },
+            {path: 'control-almacen', component: ControlAlmacen}
 
         ]
        

@@ -22,7 +22,9 @@ export class ClientApi {
   }
 
   getById(url: string, id: number) {
-    return this.http.get(`${this.baseUrl}/${url}/${id}`);
+    return this.http.get(`${this.baseUrl}/${url}/${id}`,{
+      headers : this.headers
+    });
   }
 
   post(url: string, body: any) {

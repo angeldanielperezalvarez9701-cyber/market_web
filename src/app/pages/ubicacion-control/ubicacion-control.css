@@ -1,0 +1,23 @@
+.p-inputtext{
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
+
+.texto-titulo-ubi{
+    position: sticky;
+    top: 0%;
+    z-index: 1000;
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.botonAceptrar p-button,
+.botonCancelar p-button {
+    display: flex;
+    width: 100%;
+}
+
+.botonAceptrar p-button button,
+.botonCancelar p-button button {
+    width: 100%;
+}

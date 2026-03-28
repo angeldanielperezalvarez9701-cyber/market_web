@@ -1,0 +1,47 @@
+<div class="container mx-auto">
+
+<div class="grid flex justify-content-center">
+    <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+        <div class="grid titulo flex justify-content-center mt-1  " [ngClass]="{'ocultar-div' : ui.botonMuebleAgrega}">
+            <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                <h1><i class="pi pi-list-check"></i>{{ui.tituloMueble}}</h1>
+            </div>
+
+        </div>
+        <div class="grid  div-form flex justify-content-center mt-3 ">
+            <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                <div class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-center"
+                    [ngClass]="{'ocultar-div' : ui.botonMuebleAgrega}">
+                    <div
+                        class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-end flex-wrap">
+                        <div class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                            <p-splitbutton label="Agregar Producto" (onClick)="agregarMueble()" [model]="items"
+                                severity="contrast" [rounded]="true" icon="pi pi-check-circle" />
+
+                        </div>
+                    </div>
+                </div>
+                <div class="card divSombreados">
+
+                    <p-table [value]="servicioMueble.muebles()" [tableStyle]="{ 'min-width': '50rem' }">
+                        <ng-template #header>
+                            <tr>
+                                <th>Mueble</th>
+                                <th>Tipo</th>
+                                <th>Ver</th>
+                            </tr>
+                        </ng-template>
+                        <ng-template #body let-mueble>
+                            <tr>
+                                <td>{{ mueble.nombreMueble }}</td>
+                                <td>{{ mueble.tipoMueble }}</td>
+                                <td></td>
+                            </tr>
+                        </ng-template>
+                    </p-table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

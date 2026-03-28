@@ -13,7 +13,7 @@ export class ApiService {
     return this.cliente.get<any[]>(endpoint);
   }
 
-  getById( endpoint:string , id: number) {
+  getById( endpoint:string , id: number) :Observable<any> {
     return this.cliente.getById(endpoint, id);
   }
 

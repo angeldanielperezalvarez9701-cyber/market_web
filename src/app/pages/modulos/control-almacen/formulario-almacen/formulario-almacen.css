@@ -1,0 +1,45 @@
+.ubicacion-div{
+    
+     padding-top: 0% !important;
+     padding-left: 0% !important;
+     padding-right: 0% !important;
+     padding-bottom: 0% !important;
+     margin-bottom: 0% !important;
+     height: 50vh;
+     overflow-y: auto;
+     overflow-x: hidden;
+}
+
+.n {
+    
+    width: 100% !important;
+    padding-left: 0% !important;
+    padding-right: 0% !important;
+    height: 100% !important;
+    max-height: 100% !important;
+
+}
+
+.n .container .formulario-producto {
+    margin-top: 0% !important;
+    padding-top: 0% !important;
+    padding-bottom: 0% !important;
+    width: 100% !important;
+    
+    
+}
+
+.n .contenido {
+   
+    height: 50vh;
+}
+
+.n  .formulario-producto{
+    box-shadow: none;
+}
+
+.p-inputtext{
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 100% !important;
+}
