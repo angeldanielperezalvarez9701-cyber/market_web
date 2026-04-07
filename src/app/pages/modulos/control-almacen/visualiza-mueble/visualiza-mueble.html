@@ -1,0 +1,238 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center  ">
+                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary" [rounded]="true"
+                        [raised]="true" (onClick)="retrocede()" />
+                </div>
+                <div class="descripTitulo sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                    <h1>Vista Mueble</h1>
+                </div>
+            </div>
+
+            <hr>
+            @if (serviceMueble.mueble != null && serviceMueble.mueble.idMueble != null) {
+            <div class="grid  div-form flex justify-content-center ml-3 mt-4 pt-3"
+                [ngClass]="{'ocultar-div' : ui.visualizaMueble}">
+                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                    <div class="card">
+                        <form #exampleForm="ngForm" class=" grid  gap-4 w-full" (ngSubmit)="onSubmit(exampleForm)">
+
+                            <div class="grid bloqueUno w-full p-2 sm:col-12 md:col-12 lg:col-12 xl:col-12">
+
+                                <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6  divTex mr-3">
+                                    <p-floatLabel variant="on" class="w-full">
+
+                                        <input pInputText type="text" id="nombreMueble" aria-describedby="username-help"
+                                            name="nombreMueble" [(ngModel)]="serviceMueble.mueble.nombreMueble"
+                                            #nombreMueble="ngModel"
+                                            [invalid]="nombreMueble.invalid && (nombreMueble.touched || exampleForm.submitted)"
+                                            required />
+                                        <label for="on_label">Nombre del Mueble</label>
+                                    </p-floatLabel>
+
+                                    <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                        el
+                                        nombre del producto</small>
+                                    @if (nombreMueble.invalid && (nombreMueble.touched || exampleForm.submitted)) {
+                                    <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del
+                                        mueble
+                                        requerido.</p-message>
+                                    }
+                                </div>
+
+                                <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6  divTex">
+                                    <p-floatLabel variant="on" class="w-full">
+
+                                        <input pInputText type="text" id="numeroMueble" aria-describedby="username-help"
+                                            name="numeroMueble" [(ngModel)]="serviceMueble.mueble.numeroMueble"
+                                            #numeroMueble="ngModel"
+                                            [invalid]="numeroMueble.invalid && (numeroMueble.touched || exampleForm.submitted)"
+                                            required />
+                                        <label for="on_label">Numero del Mueble</label>
+                                    </p-floatLabel>
+
+                                    <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                        el
+                                        nombre del producto</small>
+                                    @if (numeroMueble.invalid && (numeroMueble.touched || exampleForm.submitted)) {
+                                    <p-message severity="error" size="small" variant="simple" class="pl-2">Numero del
+                                        mueble
+                                        requerido.</p-message>
+                                    }
+                                </div>
+
+                                <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex mt-3 w-full">
+
+                                    <p-floatLabel variant="on" class="w-full">
+                                        <textarea pTextarea id="descripcionMueble" rows="5" cols="30" name="username"
+                                            [(ngModel)]="serviceMueble.mueble.descripcionMueble"
+                                            #descripcionMueble="ngModel"
+                                            [invalid]="descripcionMueble.invalid && (descripcionMueble.touched || exampleForm.submitted)"
+                                            required style="resize: none" class="h-full w-full"></textarea>
+                                        <label for="on_label">Descripción / notas del Mueble</label>
+                                    </p-floatLabel>
+
+                                    <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce
+                                        la
+                                        Descripción / notas del mueble </small>
+                                    @if (descripcionMueble.invalid && (descripcionMueble.touched ||
+                                    exampleForm.submitted)) {
+                                    <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción /
+                                        notas del
+                                        mueble
+                                        requerida.</p-message>
+                                    }
+
+                                </div>
+
+                                @if(ui.editaTipo){
+
+                                <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex mt-3">
+
+                                    <p-floatLabel variant="on" class="w-full">
+                                        <p-select [options]="serviceMueble.tipoMueble()"
+                                            [(ngModel)]="serviceMueble.mueble.tipoMueble" optionLabel="nombreTipoMueble"
+                                            class="w-full md:w-56" name="nombreTipoMueble" id="nombreRepisa"
+                                            #nombreRepisa="ngModel"
+                                            [invalid]="nombreRepisa.invalid && (nombreRepisa.touched || exampleForm.submitted)"
+                                            required />
+                                        <label for="on_label">Selcciona el tipo de mueble </label>
+                                    </p-floatLabel>
+
+                                    <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona
+                                        el
+                                        el tipo de mueble </small>
+                                    @if (nombreRepisa.invalid && (nombreRepisa.touched ||
+                                    exampleForm.submitted)) {
+                                    <p-message severity="error" size="small" variant="simple" class="pl-2">Tipo de
+                                        mueble
+                                        requerida.</p-message>
+                                    }
+
+                                </div>
+
+                                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                    <p-button label="Aceptar" icon="pi  pi-check-circle" severity="contrast"
+                                        class="mr-4" [rounded]="true" [raised]="true"
+                                        (onClick)="aceptaCambio('tipoProducto')" />
+
+                                    <p-button label="Cancelar" icon="pi pi-trash" severity="secondary" [rounded]="true"
+                                        [raised]="true" (onClick)="retrocede()" />
+                                </div>
+                                }
+
+
+                                <div
+                                    class="grid  recursos bloqueUno w-full divSombreados  pl-5 pr-5  pb-5  sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-4 flex justify-content-around align-items-cente">
+
+                                    <div class="titulor sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                        <h2>Recursos</h2>
+                                    </div>
+                                    <div
+                                        class="recirsos-div  sm:col-12 md:col-4 lg:col-4 xl:col-4  flex justify-content-center align-items-center">
+                                        <div class="grid primerRecurso recurso-m  r w-full pr-3 pl-3 pt-3">
+                                            <div class=" sm:col-12 md:col-8 lg:col-8 xl:col-8 texto txt one ">
+                                                <h3 class="txt">Tipo de Muebles</h3>
+                                            </div>
+                                            <div
+                                                class=" sm:col-12 md:col-4 lg:col-4 xl:col-4 one flex justify-content-end">
+                                                <p-button icon="pi pi-pencil" severity="secondary" rounded
+                                                    (click)="ui.editaTipo = true" />
+                                            </div>
+
+                                            <div class="texto-contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                                @if (serviceMueble.mueble.tipoMueble != null) {
+                                                <h1 class="txt">{{serviceMueble.mueble.tipoMueble.nombreTipoMueble}}
+                                                </h1>
+
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="recirsos-div  sm:col-12 md:col-4 lg:col-4 xl:col-4  flex justify-content-center align-items-center">
+                                        <div class="grid primerRecurso recurso-m  r w-full pr-3 pl-3 pt-3">
+                                            <div class=" sm:col-12 md:col-8 lg:col-8 xl:col-8 texto txt one ">
+                                                <h3 class="txt">Almacén</h3>
+                                            </div>
+                                            <div
+                                                class=" sm:col-12 md:col-4 lg:col-4 xl:col-4 one flex justify-content-end">
+                                                <p-button icon="pi pi-pencil" severity="secondary" rounded />
+                                            </div>
+
+                                            <div class="texto-contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                                @if (serviceMueble.mueble.tipoMueble != null) {
+                                                <h1 class="txt">{{serviceAlmacen.almacen.nombreAlmacen}}
+                                                </h1>
+                                                }
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+                                    <div
+                                        class="recirsos-div  sm:col-12 md:col-4 lg:col-4 xl:col-4  flex justify-content-center align-items-center">
+                                        <div class="grid primerRecurso recurso-m  r w-full pr-3 pl-3 pt-3">
+                                            <div class=" sm:col-12 md:col-8 lg:col-8 xl:col-8 texto txt one ">
+                                                <h3 class="txt">Repisas</h3>
+                                            </div>
+                                            <div
+                                                class=" sm:col-12 md:col-4 lg:col-4 xl:col-4 one flex justify-content-end">
+                                                <p-button icon="pi  pi-eye" severity="secondary" rounded type="button"
+                                                    (click)="verRepisa()" />
+                                            </div>
+
+                                            <div class="texto-contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                                <p-button label="Editar repisas" icon="pi pi-pencil" severity="secondary"
+                                                    [rounded]="true" [raised]="true" (onClick)="retrocede()" />
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+
+                                </div>
+                                <div
+                                    class="grid  divSombreados  sm:col-12 md:col-12 lg:col-12 xl:col-12 ml-1 mt-6 pt-4 div-buton flex justify-content-center">
+                                    <div
+                                        class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-center flex-wrap">
+                                        <div
+                                            class="botonAceptrar sm:col-12 md:col-12 lg:col-6 xl:col-6  flex justify-content-center">
+                                            <p-button class="w-full" label="Editar mueble" severity="contrast"
+                                                type="submit" [rounded]="true" icon="pi pi-check-circle"
+                                                [raised]="true" />
+                                        </div>
+                                        <div
+                                            class="botonCancelar bt sm:col-12 md:col-6 lg:col-6 xl:col-6   flex justify-content-center">
+                                            <p-button class="w-full" label="Cancelar" severity="secondary"
+                                                [rounded]="true" type="button" (onClick)="limpiar(exampleForm)"
+                                                icon="pi pi-trash" [raised]="true" />
+                                        </div>
+                                    </div>
+                                </div>
+
+
+
+                            </div>
+
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+            }
+
+
+        </div>
+
+
+    </div>
+</div>

@@ -56,11 +56,11 @@
                                 <tr>
                                     <td><strong>{{ almacen.nombreAlmacen }}</strong></td>
                                     <td><strong>{{ almacen.descripcionAlmacen ?? 'SN'}}</strong></td>
-                                    <td><strong>{{ almacen.ubicacionDTO.calleUbicacion?? 'SN'}}</strong>
+                                    <td><strong>{{ almacen.ubicacion.calleUbicacion?? 'SN'}}</strong>
                                         <br>
-                                        {{ almacen.ubicacionDTO.coloniaUbicacion?? ''}}
+                                        {{ almacen.ubicacion.coloniaUbicacion?? ''}}
                                         <br>
-                                        {{ almacen.ubicacionDTO.delegacionMunicipioUbicacion?? ''}}
+                                        {{ almacen.ubicacion.delegacionMunicipioUbicacion?? ''}}
                                     </td>
                                     <td class="text-center">
                                         <p-button icon="pi pi-trash" severity="secondary" rounded
@@ -101,7 +101,7 @@
         </div>
     </div>
     <div class="card flex justify-center">
-        <p-toast />
+        <p-toast position="center" />
         <p-confirmdialog />
     </div>
 </div>

@@ -1,0 +1,61 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+
+                    <h3 class="mb-6 texto-titulo-ubi">Nuevo tipo mueble </h3>
+
+                    <form #exampleForm="ngForm" class=" grid gap-4" (ngSubmit)="onSubmit(exampleForm)">
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex"
+                            [ngClass]="{'ocultar-div' : ui.contenidoAOcultarRepisa}">
+                            <p-floatLabel variant="on" class="w-full">
+
+                                <input pInputText type="text" id="nombreTipoMueble" aria-describedby="username-help"
+                                    name="nombreTipoMueble" [(ngModel)]="serviceMueble.tipoMuebleObj.nombreTipoMueble"
+                                    #nombreTipoMueble="ngModel"
+                                    [invalid]="nombreTipoMueble.invalid && (nombreTipoMueble.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Nombre del tipo mueble</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del tipo mueble</small>
+                            @if (nombreTipoMueble.invalid && (nombreTipoMueble.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del tipo mueble
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                                  
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="descripcionMueble" rows="5" cols="30" name="descripcionMueble"
+                                    [(ngModel)]="serviceMueble.tipoMuebleObj.descripcionMueble" #descripcionMueble="ngModel"
+                                    [invalid]="descripcionMueble.invalid && (descripcionMueble.touched || exampleForm.submitted)"
+                                    required style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Descripción del tipo mueble</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del mueble</small>
+                            @if (descripcionMueble.invalid && (descripcionMueble.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción del tipo
+                                mueble
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

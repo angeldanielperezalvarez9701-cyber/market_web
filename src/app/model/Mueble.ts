@@ -7,7 +7,7 @@ export interface Mueble{
     nombreMueble : string,
     numeroMueble:number,
     descripcionMueble: string,
-    tipoMueble:TipoMueble,
-    almacen:Almacen,
+    tipoMueble:TipoMueble | any,
+    almacen:Almacen | any,
     repisas:Repisa[]
 }

@@ -31,7 +31,31 @@ export class EndPoitBase {
      * TipoMueble
      */
     static readonly URL_TIPO_MUEBLE = "tipoMueble/";
+    static readonly URL_GUARDA_TIPO_MUEBLE = "saveTipoMu";
     static readonly URL_LISTA_TIPO_MUEBLE = "listaAllTipMu";
+    static readonly URL_LISTA_XID_TIPO_MUEBLE = "tpm";
+    static readonly URL_ELMINA_XID_TIPO_MUEBLE = "eliminartmp";
+
+
+    /**
+     * Mueble
+     */
+    static readonly URL_MUEBLE = "mueble/";
+    static readonly URL_MUEBLE_ID = "mubleXId";
+    static readonly URL_GUARDA_MUEBLE = "saveMueble";
+    static readonly URL_GUARDA_MUEBLE_REPISA = "guardarConRepisa";
+    static readonly URL_LISTA_MUEBLE = "allMueble";
+    static readonly URL_LISTA_MUEBLE_X_ALMACEN = "muebleXAlmacen";
+
+      /**
+     * Repisa
+     */
+    static readonly URL_REPISA = "repisa/";
+    static readonly URL_GUARDA_REPISA = "saveRepisa";
+    static readonly URL_REPISA_LIST_X_MUEBLE = "getXMueble";
+    static readonly URL_REPISA_LIST_X_ID = "porRepisa";
+    static readonly URL_ELIMINA_REPISA = "elimina";
+
 
 
 }

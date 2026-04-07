@@ -1,0 +1,87 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center sm:col-12 md:col-12 lg:col-12 xl:col-12 repi">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+            <div class="grid titulo flex justify-content-center  ">
+                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary" [rounded]="true"
+                        [raised]="true" (onClick)="retrocede()" />
+                </div>
+                <div class="descripTitulo sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                    <h1>Vista Repisa</h1>
+                </div>
+            </div>
+
+            <div class="tab tab-re sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div muble-d w-full">
+                <div class="card">
+                    <p-dataview #dv [value]="serviceRepisa.repisas()" class="w-full ">
+                        <ng-template #list let-items>
+                            <div class="grid grid-cols-12 gap-4 grid-nogutter w-full  ">
+                                <div class="col-span-12 w-full" *ngFor="let item of items; let first = first">
+                                    <div class="flex flex-col sm:flex-row sm:items-center p-6 gap-4 w-full "
+                                        [ngClass]="{ 'border-t border-surface-200 dark:border-surface-700': !first }">
+                                        <div class="md:w-40 relative">
+                                            <p-tag [value]="item.inventoryStatus" class="absolute dark:!bg-surface-900"
+                                                [style.left.px]="4" [style.top.px]="4" />
+                                        </div>
+                                        <div
+                                            class="grid  sm:col-12 md:col-12 lg:col-12 xl:col-12 flex flex-col md:flex-row justify-between md:items-center flex-1 gap-6 w-full">
+                                            <div
+                                                class="grid sm:col-12 md:col-5 lg:col-5 xl:col-5 flex flex-row md:flex-col justify-between items-start gap-2">
+
+                                                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                                                    <div class="">
+
+                                                        <span class="font-medium text-secondary text-sm">{{
+                                                            item.nombreRepisa
+                                                            }}</span>
+                                                        <div
+                                                            class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2">
+                                                            {{ item.descripcionRepisa }}
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div
+                                                class="flex flex-col md:items-end gap-8 sm:col-12 md:col-6 lg:col-6 xl:col-6 ">
+                                                <span
+                                                    class="text-xl font-semibold text-surface-900 dark:text-surface-0"></span>
+                                                <div
+                                                    class="grid flex flex-row-reverse md:flex-row gap-2 col-12 md:col-12 lg:col-12 xl:col-12 text-center">
+
+                                                    <div class="botonEdita col-3 md:col-3 lg:col-3 xl:col-3 ">
+                                                        <p-button icon="pi pi-pencil" severity="secondary"
+                                                            [raised]="true" (click)="verRepisa(item)" />
+                                                            <small class="mt-2 ml-1"><strong>Editar</strong></small>
+                                                    </div>
+                                                
+                                                     <div class="botonEdita col-3 md:col-3 lg:col-3 xl:col-3 text-center">
+                                                        <p-button icon="pi pi-trash" severity="secondary"
+                                                            [raised]="true" (click)="confirm($event,item)" />
+                                                            <small class="mt-2 ml-1"><strong>Eliminar</strong></small>
+                                                    </div>
+
+                                                     <div class="botonEdita col-3 md:col-3 lg:col-3 xl:col-3 text-center">
+                                                        <p-button icon="pi pi-eye" severity="secondary"
+                                                            [raised]="true" (click)="verRepisa(item)" />
+                                                            <small class="mt-2 ml-1"><strong>Productos</strong></small>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <hr>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-dataview>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>

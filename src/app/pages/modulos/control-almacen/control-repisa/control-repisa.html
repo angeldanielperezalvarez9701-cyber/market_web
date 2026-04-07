@@ -1,0 +1,118 @@
+<div class="container mx-auto">
+
+    <div class="grid flex justify-content-center">
+        <div class="contenido sm:col-12 md:col-12 lg:col-12 xl:col-12">
+
+            <div class="grid  div-form flex justify-content-center mt-3 ">
+                <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
+
+                    <h3 class="mb-6 texto-titulo-ubi">Nueva Repisa</h3>
+
+                    <form #exampleForm="ngForm" class=" grid gap-4" (ngSubmit)="onSubmit(exampleForm)">
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex"
+                            [ngClass]="{'ocultar-div' : ui.contenidoAOcultarRepisa}">
+                            <p-floatLabel variant="on" class="w-full">
+
+                                <input pInputText type="text" id="nombreRepisa" aria-describedby="username-help"
+                                    name="nombreRepisa" [(ngModel)]="serviceRepisa.repisa.nombreRepisa"
+                                    #nombreRepisa="ngModel"
+                                    [invalid]="nombreRepisa.invalid && (nombreRepisa.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Nombre de repisa</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del producto</small>
+                            @if (nombreRepisa.invalid && (nombreRepisa.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del repisa
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex"
+                            [ngClass]="{'ocultar-div' : ui.contenidoAOcultarRepisa}">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <textarea pTextarea id="descripcionMueble" rows="5" cols="30" name="descripcionRepisa"
+                                    [(ngModel)]="serviceRepisa.repisa.descripcionRepisa" #descripcionRepisa="ngModel"
+                                    [invalid]="descripcionRepisa.invalid && (descripcionRepisa.touched || exampleForm.submitted)"
+                                    required style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Descripción de la repisa</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción de la repisa </small>
+                            @if (descripcionRepisa.invalid && (descripcionRepisa.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción de la
+                                repisa
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                           <div class="grid   sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-2 div-buton flex justify-content-start"
+                            [ngClass]="{'ocultar-div' : ui.contenidoAOcultarRepisa}">
+                            <div
+                                class="grid comboBotones bt sm:col-12 md:col-10 lg:col-12 xl:col-12 flex justify-content-center flex-wrap">
+                                <div
+                                    class="botonAceptrar sm:col-12 md:col-12 lg:col-4 xl:col-4  flex justify-content-center">
+                                    <p-button class="w-full" label="Agregar repisa" severity="contrast" type="button"
+                                        (click)="agregaRepisas(exampleForm)" [rounded]="true" icon="pi pi-check-circle"
+                                        [raised]="true" />
+                                </div>
+                                <div
+                                    class="botonAceptrar sm:col-12 md:col-12 lg:col-4 xl:col-4  flex justify-content-center">
+                                    <p-button class="w-full" label="Terminar" severity="contrast" type="submit"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true"
+                                        [disabled]="serviceRepisa.repisasAgregar.length === 0" />
+                                </div>
+                                <div
+                                    class="botonCancelar bt sm:col-12 md:col-4 lg:col-4 xl:col-4   flex justify-content-center">
+                                    <p-button class="w-full" label="Cancelar" severity="secondary" [rounded]="true"
+                                        type="button" (onClick)="limpiar(exampleForm)" icon="pi pi-trash"
+                                        [raised]="true" />
+                                </div>
+                            </div>
+                        </div>
+
+                        @if (serviceRepisa.repisasAgregar.length > 0) {
+
+                        <div class="repitext sm:col-12 md:col-12 lg:col-12 xl:col-12 ">
+                            <h3>Repisas agregadas</h3>
+                        </div>
+                        <div class="list sm:col-12 md:col-12 lg:col-12 xl:col-12">
+                            <div class="card sm:flex sm:justify-center w-full">
+                                <p-orderlist [value]="serviceRepisa.repisasAgregar" filterBy="nombreRepisa"
+                                    filterPlaceholder="Filter by nombreRepisa" [responsive]="true" breakpoint="575px"
+                                    scrollHeight="20rem" class="sm:min-w-96">
+                                    <ng-template let-option let-selected="selected" #item>
+                                        <div class="flex flex-wrap p-1 items-center gap-4 w-full s">
+
+                                            <div class="flex-1 flex flex-col">
+                                                <span class="font-medium text-sm">{{ option.nombreRepisa }}</span>
+                                                <span [ngClass]="{
+                                                   'text-sm': true,
+                                                    'text-surface-500': !selected,
+                                                   'dark:text-surface-400': !selected,
+                                                    'text-inherit': selected
+                                                   }">{{ option.category }}</span>
+                                            </div>
+                                            <span class="font-bold sm:ml-8">{{ option.descripcionRepisa }}</span>
+                                            <p-button label="Elimina" severity="secondary" [rounded]="true"
+                                                type="button" (click)="eliminarRepisa($event,option)" icon="pi pi-trash"
+                                                [raised]="true" />
+                                        </div>
+                                    </ng-template>
+                                </p-orderlist>
+                            </div>
+                        </div>
+                        }
+
+                    
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

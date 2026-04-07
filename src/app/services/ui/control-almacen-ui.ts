@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,10 @@ export class ControlAlmacenUi {
   botonMuebleAgrega: boolean = true;
   tituloMueble: string = "Control Muebles";
   visible: boolean = false;
-
+  agregarRepisa: boolean = true;
+  botonRepisa: boolean = false;
+  contenidoAOcultarRepisa: boolean = false;
+  formularioObjetoActivado: string = ""
   /**
    * Variable para mueble
    */
@@ -24,13 +27,89 @@ export class ControlAlmacenUi {
   agegaTituloExtra: boolean = true;
   textoTitutlo: string = "Mueble"
 
+
+  visualizaMueble: boolean = true;
+  contenedorMueble: boolean = false;
+  editaTipo: boolean = false;
+
+  nuevaRepisa:boolean= false;
+  nuevoTipoProducto:boolean=false;
+  
+  tabActivo = signal<string> ("0");
+  verRepisass = signal<boolean> (false);
+
   muestraLista() {
+
+  }
+
+  muestraContenedorMueble(opcion: string) {
+
+    if ("verMueble" === opcion) {
+
+      this.contenedorMueble = true;
+      this.visualizaMueble = false;
+
+      return;
+
+    }
+
+    if ("verContenedor" === opcion) {
+
+      this.contenedorMueble = false;
+      this.visualizaMueble = true;
+
+      return;
+
+    }
+
+     if ("verRepisa" === opcion) {
+      this.contenedorMueble = true;
+      this.visualizaMueble = true;
+      this.verRepisass.set(true);
+      return;
+    }
+
+    if("verMueblePost" === opcion){
+      this.contenedorMueble = true;
+      this.visualizaMueble = false;
+      this.verRepisass.set(false);
+      return;
+    }
+
+    if("getById" === opcion){
+
+      this.contenedorMueble = false;
+      this.visualizaMueble = false;
+      this.verRepisass.set(false);
+      return
+
+    }
+
+   
+
 
   }
 
   muestraFormulario() {
     this.tipoAlmacenForm = false;
     this.cotenedorPrincipal = true;
+  }
+
+  muestraModalAgregarMueble(){
+    this.formularioObjetoActivado = "formularioObjetoActivado";
+    this.nuevoTipoProducto = true;
+    this.mostarFormularioModalMueble();
+    this.nuevaRepisa = true;
+    this.visible = true
+  }
+
+  muestraContenidoPrincipal(vista: string) {
+
+    if ("retrocede" === vista) {
+      this.visualizadorAlmacen = true;
+    }
+
+    this.cotenedorPrincipal = false;
   }
 
   muestraContenido() {
@@ -50,8 +129,8 @@ export class ControlAlmacenUi {
 
   }
 
-  mostarFormularioModalMueble(){
-    this.titulo= true;
+  mostarFormularioModalMueble() {
+    this.titulo = true;
     this.agegaTituloExtra = false;
   }
 
@@ -66,6 +145,12 @@ export class ControlAlmacenUi {
       this.contenidoUbicacionVista = false;
       this.contenidoUbicacion = true;
     }
+
+  }
+
+  muestraContenidoRepisa() {
+
+    this.agregarRepisa = false;
 
   }
 

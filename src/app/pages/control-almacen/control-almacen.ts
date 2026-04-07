@@ -16,6 +16,7 @@ import { ControlAlmacenUi } from '../../services/ui/control-almacen-ui';
 import { FormularioAlmacen } from '../modulos/control-almacen/formulario-almacen/formulario-almacen'
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { VisualizaAlmacen } from "../modulos/control-almacen/visualiza-almacen/visualiza-almacen";
+import { UiGlobal } from '../../services/ui/ui-global';
 @Component({
   selector: 'app-control-almacen',
   imports: [
@@ -46,7 +47,7 @@ export class ControlAlmacen implements OnInit {
   almacen = {} as Almacen;
   items: MenuItem[];
 
-  constructor(public serviceAlmacen: ServiceAlmacenControl, public ui: ControlAlmacenUi) {
+  constructor(public serviceAlmacen: ServiceAlmacenControl, public ui: ControlAlmacenUi,private cd: ChangeDetectorRef, public uiGlobal :UiGlobal) {
 
     this.items = [
       {
@@ -83,9 +84,11 @@ export class ControlAlmacen implements OnInit {
 
   verAlmacen(almacen: Almacen) {
 
+    this.uiGlobal.activaSpiner.set(true);
     var idAlmacen = almacen.idAlmacen;
     this.ui.opcionLimpieza="formularioSecundario";
     this.serviceAlmacen.getById(idAlmacen);
+    this.cd.detectChanges();
     this.ui.muestraAlmacenById();
 
   }

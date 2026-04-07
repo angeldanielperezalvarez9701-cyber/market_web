@@ -96,7 +96,7 @@ export class FormularioAlmacen implements OnInit, OnChanges {
   ubicacionOrigen() {
 
     console.log("Entrado ubicaorigen")
-    this.almacen.ubicacionDTO = this.serviceUbicacion.ubicacion;
+    this.almacen.ubicacion = this.serviceUbicacion.ubicacion;
   }
 
   limpiar(form: any) {

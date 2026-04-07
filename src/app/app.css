@@ -1,0 +1,19 @@
+.progress-b{
+    position: absolute;
+    height: 100vh !important;
+    width: 100vw !important;
+    z-index: 1000;
+    align-items: center !important;
+    align-content:center !important;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.carga{
+    color: whitesmoke !important;
+    width: 100% !important; 
+    position:absolute;
+    transform: translate(0, 10vh);
+    display: flex;
+    justify-content: center;
+    font-size: large;
+}

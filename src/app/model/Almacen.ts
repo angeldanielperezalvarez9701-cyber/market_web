@@ -10,8 +10,8 @@ export interface Almacen{
     notasAlmacen:string
     descripcionAlmacen:string,
     eliminarAlmacen:boolean,
-    ubicacionDTO:Ubicacion,
-    mueblesMuebleDTOS:Mueble[],
+    ubicacion:Ubicacion,
+    muebles:Mueble[],
     tiendaDTOS:Tienda[],
     inventarioGeneralDTO:InventarioGeneral[]
 }

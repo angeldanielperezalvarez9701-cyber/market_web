@@ -1,11 +1,12 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+
+import { ChangeDetectorRef, Component, inject, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
 import { ButtonModule } from 'primeng/button';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
-import { MenuItem, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { FloatLabelModule } from 'primeng/floatlabel';
 import { TextareaModule } from 'primeng/textarea';
 import { SelectModule } from 'primeng/select';
@@ -19,16 +20,14 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { Dialog, DialogModule } from 'primeng/dialog';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
-import { ControlAlmacenUi } from '../../../../services/ui/control-almacen-ui';
+import { ControlAlmacen } from '../../../control-almacen/control-almacen';
 import { ServiceMueble } from '../../../../services/services-almacen/service-mueble';
-import { VisualizaMueble } from "../visualiza-mueble/visualiza-mueble";
-import { Mueble } from '../../../../model/Mueble';
+import { ControlAlmacenUi } from '../../../../services/ui/control-almacen-ui';
+import { TipoMueble } from '../../../../model/TipoMueble';
 import { UiGlobal } from '../../../../services/ui/ui-global';
-import { VisualizaRepisa } from "../visualiza-repisa/visualiza-repisa";
-import { ListaTipoM } from "../lista-tipo-m/lista-tipo-m";
-import { ServiceAlmacenControl } from '../../../../services/services-almacen/service-almacen-control';
+
 @Component({
-  selector: 'app-muebles-control',
+  selector: 'app-lista-tipo-m',
   imports: [
     FormsModule,
     ToastModule,
@@ -48,71 +47,54 @@ import { ServiceAlmacenControl } from '../../../../services/services-almacen/ser
     TableModule,
     SplitButtonModule,
     DialogModule,
-    VisualizaMueble,
     IconFieldModule,
-    InputIconModule,
-    VisualizaRepisa,
-    ListaTipoM
+    InputIconModule
   ],
-  templateUrl: './muebles-control.html',
-  styleUrl: './muebles-control.css',
-  standalone: true,
-  encapsulation: ViewEncapsulation.None
+  templateUrl: './lista-tipo-m.html',
+  styleUrl: './lista-tipo-m.css',
 })
-export class MueblesControl implements OnInit {
+export class ListaTipoM implements OnInit {
 
-  items: MenuItem[];
-
-  constructor(public ui: ControlAlmacenUi, public servicioMueble: ServiceMueble, public uiGlobal: UiGlobal, private serviceAlmacen: ServiceAlmacenControl) {
-
-    this.items = [
-      {
-        label: 'Agregar mueble',
-        command: () => {
-          this.agregarMueble()
-        }
-      },
-      { separator: true },
-      {
-        label: 'Agregar Tipo mueble',
-        command: () => {
-          this.muestraModalTipoMueble();
-        }
-      },
-
-    ];
-
-  }
+  messageService = inject(MessageService);
+  private confirmationService = inject(ConfirmationService);
+  constructor(public ui: ControlAlmacenUi, public servicioMueble: ServiceMueble, public uiGlobal: UiGlobal, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
-
+    this.servicioMueble.getTipoMueble();
   }
 
-  agregarMueble() {
+  consultaTipoM(muebleTipo: TipoMueble) {
 
-    this.servicioMueble.mueble.almacen = this.serviceAlmacen.almacen;
-    this.ui.muestraModalAgregarMueble()
-  }
-
-  muestraModalTipoMueble() {
-    this.ui.formularioObjetoActivado = "formularioTipoProducto"
-    this.ui.nuevoTipoProducto = true;
-    this.ui.visible = true;
-
-  }
-
-
-
-
-
-  verMueble(mueble: Mueble) {
-
+    console.log(" buscando x id tm")
     this.uiGlobal.activaSpiner.set(true);
-    this.servicioMueble.getMuebleXId(mueble)
+    this.ui.formularioObjetoActivado = "formularioTipoProducto"
+    this.ui.nuevoTipoProducto = false;
+
+    this.servicioMueble.getTipoMuebleId(muebleTipo);
+
 
   }
 
-  onSubmit(form: any) {
+  confirm(event: Event, tpm: TipoMueble) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    this.confirmationService.confirm({
+      message: '¿Estas seguro de eliminar el tipo de mueble?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => this.servicioMueble.eliminaTipoMueble(tpm)
+    });
 
   }
+
+  eliminaTipoM( tpm: TipoMueble){
+    this.uiGlobal.activaSpiner.set(true);
+    this.servicioMueble.eliminaTipoMueble(tpm);
+    this.cd.detectChanges();
+    if(this.servicioMueble.eliminado() === true){
+         this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Tipo mueble eliminado', life: 3000 });
+    }
+  }
+
 }

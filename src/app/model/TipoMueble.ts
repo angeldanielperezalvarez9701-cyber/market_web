@@ -5,5 +5,5 @@ export interface TipoMueble{
     nombreTipoMueble:string,
     descripcionMueble:string,
     notasMueble:string
-    mueble:Mueble[]
+
 }

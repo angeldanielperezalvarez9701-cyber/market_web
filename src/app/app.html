@@ -1,2 +1,7 @@
-
+@if (uiGlobal.activaSpiner()) {
+<div class="card flex justify-center progress-b">
+    <p-progress-spinner ariaLabel="loading" />
+    <small class="carga">Cargando ...</small>
+</div>
+}
 <router-outlet />

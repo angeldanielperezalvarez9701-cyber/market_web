@@ -8,6 +8,10 @@
                 <div class="descripTitulo sm:col-12 md:col-10 lg:col-10 xl:col-10">
                     <h1><i class="pi pi-tags"></i>Gestionar Almacén</h1>
                 </div>
+                <div class="sm:col-12 md:col-10 lg:col-10 xl:col-10">
+                    <p-button label="Regresar" icon="pi pi-arrow-left" severity="secondary" [rounded]="true"
+                        [raised]="true" (onClick)="retrocede()" />
+                </div>
             </div>
 
             <div class="grid  div-form flex justify-content-center mt-7">
@@ -15,6 +19,7 @@
 
                     <div class="grid almacen">
 
+                        @if (serviceAlmacen.almacenRederizado()) {
                         <form #exampleForm="ngForm" class=" grid  gap-4 w-full" (ngSubmit)="onSubmit(exampleForm)">
 
                             <div
@@ -104,31 +109,31 @@
                                 <div class="contenidoUbi  sm:col-12 md:col-12 lg:col-12 xl:col-12"
                                     [ngClass]="{'ocultar-div' : ui.contenidoUbicacionVista}">
 
-                                    @if (serviceAlmacen.almacen.ubicacionDTO != undefined ||
-                                    serviceAlmacen.almacen.ubicacionDTO != null) {
+                                    @if (serviceAlmacen.almacen.ubicacion != undefined ||
+                                    serviceAlmacen.almacen.ubicacion != null) {
 
                                     <p><strong>Ciudad / Estado :</strong>
-                                        {{serviceAlmacen.almacen.ubicacionDTO.ciudadEstadoUbicacion}} </p>
+                                        {{serviceAlmacen.almacen.ubicacion.ciudadEstadoUbicacion}} </p>
                                     <p><strong>Delegación :</strong>
-                                        {{serviceAlmacen.almacen.ubicacionDTO.delegacionMunicipioUbicacion}} </p>
+                                        {{serviceAlmacen.almacen.ubicacion.delegacionMunicipioUbicacion}} </p>
                                     <p><strong>Dirección : </strong> Calle :
-                                        {{serviceAlmacen.almacen.ubicacionDTO.calleUbicacion}} ,
-                                        Colonia : {{serviceAlmacen.almacen.ubicacionDTO.coloniaUbicacion}},
+                                        {{serviceAlmacen.almacen.ubicacion.calleUbicacion}} ,
+                                        Colonia : {{serviceAlmacen.almacen.ubicacion.coloniaUbicacion}},
                                         Numero Interior :
-                                        {{serviceAlmacen.almacen.ubicacionDTO.numeroInteriorUbicacion}},
+                                        {{serviceAlmacen.almacen.ubicacion.numeroInteriorUbicacion}},
                                         Numero Exterior :
-                                        {{serviceAlmacen.almacen.ubicacionDTO.numeroExteriorUbicacion}}
+                                        {{serviceAlmacen.almacen.ubicacion.numeroExteriorUbicacion}}
 
                                     </p>
-                                    <p class="pb-3">Codigo Postal : {{serviceAlmacen.almacen.ubicacionDTO.cpUbicacion}}
+                                    <p class="pb-3">Codigo Postal : {{serviceAlmacen.almacen.ubicacion.cpUbicacion}}
                                     </p>
 
                                     <hr>
 
                                     <h4>Descripción y notas de la Dirección</h4>
 
-                                    <p>{{serviceAlmacen.almacen.ubicacionDTO.descripcionUbicacion}}</p>
-                                    <p>{{serviceAlmacen.almacen.ubicacionDTO.notasAdicionalesUbicacion}}</p>
+                                    <p>{{serviceAlmacen.almacen.ubicacion.descripcionUbicacion}}</p>
+                                    <p>{{serviceAlmacen.almacen.ubicacion.notasAdicionalesUbicacion}}</p>
 
 
                                     }
@@ -150,8 +155,8 @@
                                     <div class="primerRecurso r w-11">
                                         <div class="texto txt p-3">
                                             <h3 class="txt">Muebles</h3>
-                                            <h1 class="txt">{{ serviceAlmacen.almacen.mueblesMuebleDTOS ?
-                                                serviceAlmacen.almacen.mueblesMuebleDTOS.length : 0 }}</h1>
+                                            <h1 class="txt">{{ serviceAlmacen.almacen.muebles ?
+                                                serviceAlmacen.almacen.muebles.length : 0 }}</h1>
                                             <h4 class="txt">Registrados</h4>
                                         </div>
 
@@ -181,11 +186,11 @@
                                     <div class="cuartoRecurso r w-11 divSombreados">
                                         <div class="texto p-3">
                                             <h3 class="txt">Ubicación</h3>
-                                            @if (serviceAlmacen.almacen.ubicacionDTO != undefined ||
-                                            serviceAlmacen.almacen.ubicacionDTO != null) {
+                                            @if (serviceAlmacen.almacen.ubicacion != undefined ||
+                                            serviceAlmacen.almacen.ubicacion != null) {
                                             <h3 class="txt">{{
-                                                serviceAlmacen.almacen.ubicacionDTO.delegacionMunicipioUbicacion}}
-                                                {{serviceAlmacen.almacen.ubicacionDTO.cpUbicacion}}</h3>
+                                                serviceAlmacen.almacen.ubicacion.delegacionMunicipioUbicacion}}
+                                                {{serviceAlmacen.almacen.ubicacion.cpUbicacion}}</h3>
                                             <h4 class="txt">Sector</h4>
                                             }
                                         </div>
@@ -193,7 +198,7 @@
                                 </div>
                                 <div class="re sm:col-12 md:col-12 lg:col-12 xl:col-12 mt-4">
                                     <div class="card">
-                                        <p-tabs value="0" scrollable>
+                                        <p-tabs [value]="ui.tabActivo()" scrollable (valueChange)="listar($event!)">
                                             <p-tablist>
                                                 <p-tab value="0">información general</p-tab>
                                                 <p-tab value="1">muebles</p-tab>
@@ -218,13 +223,84 @@
                                                                     class="verUbica sm:col-6 md:col-6 lg:col-6 xl:col-6 flex align-items-center justify-content-end text-left ">
                                                                     <p-button label="Agrega" severity="secondary"
                                                                         [rounded]="true" type="button"
-                                                                        (click)="showDialog()" icon="pi pi-plus"
+                                                                        (click)="showDialogMueble()" icon="pi pi-plus"
                                                                         [raised]="true" />
                                                                 </div>
                                                                 <div
-                                                                    class="tab sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div w-full">
-                                                                    <app-muebles-control
-                                                                        class="n w-full "></app-muebles-control>
+                                                                    class="tab sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div muble-d w-full">
+                                                                    <div class="card listado">
+                                                                        <p-dataview #dv class="w-full"
+                                                                            [value]="serviceAlmacen.mueblesVista()">
+                                                                            <ng-template #list let-items>
+                                                                                <div
+                                                                                    class="grid grid-cols-12 gap-4 grid-nogutter w-full">
+                                                                                    <div class="col-span-12 w-full"
+                                                                                        *ngFor="let item of items; let first = first">
+                                                                                        <div
+                                                                                            class="flex flex-col sm:flex-row sm:items-center p-2 gap-4  w-full">
+
+                                                                                            <div
+                                                                                                class="grid macho flex-col md:flex-row justify-between md:items-center flex-1 gap-6  w-full">
+                                                                                                <div
+                                                                                                    class="sm:col-5 md:col-5 lg:col-5 xl:col-5 flex flex-row md:flex-col justify-between items-start gap-2">
+                                                                                                    <div>
+                                                                                                        @if (item.tipoMueble !=null) {
+                                                                                                        <span
+                                                                                                            class="font-medium text-secondary text-sm">{{
+                                                                                                            item.tipoMueble.nombreTipoMueble
+                                                                                                            }}</span>
+
+                                                                                                        }
+                                                                                                         @if (item.tipoMueble ===null) {
+                                                                                                        <span
+                                                                                                            class="font-medium text-secondary text-sm">Sin Tipo de mueble asignado</span>
+
+                                                                                                        }
+
+                                                                                                        <div
+                                                                                                            class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2">
+                                                                                                            {{
+                                                                                                            item.nombreMueble
+                                                                                                            }}</div>
+
+                                                                                                        <div
+                                                                                                            class="text-lg font-medium text-surface-900 dark:text-surface-0 mt-2">
+                                                                                                            <span
+                                                                                                                class=" text-xl font-semibold text-surface-900 dark:text-surface-0">{{
+                                                                                                                'N°' +
+                                                                                                                item.numeroMueble
+                                                                                                                }}</span>
+
+                                                                                                        </div>
+
+
+                                                                                                    </div>
+
+                                                                                                </div>
+                                                                                                <div
+                                                                                                    class="grid  hijin sm:col-5 md:col-5 lg:col-5 xl:col-5 flex flex-col md:items-end gap-8">
+
+                                                                                                    <div
+                                                                                                        class="flex flex-row-reverse md:flex-row gap-2">
+
+                                                                                                        <p-button
+                                                                                                            label="Ver"
+                                                                                                            severity="secondary"
+                                                                                                            [rounded]="true"
+                                                                                                            type="button"
+                                                                                                            (click)="verMueble(item)"
+                                                                                                            icon="pi pi-eye"
+                                                                                                            [raised]="true" />
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <hr>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </ng-template>
+                                                                        </p-dataview>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -284,6 +360,15 @@
 
                                                 </p-tabpanel>
 
+                                                <p-tabpanel value="1">
+
+                                                    <div
+                                                        class="grid sm:col-12 md:col-12 lg:col-12 xl:col-12  flex justify-content-center mt-4 w-full">
+                                                        <app-muebles-control class=" w-full "></app-muebles-control>
+                                                    </div>
+
+                                                </p-tabpanel>
+
                                             </p-tabpanels>
                                         </p-tabs>
                                     </div>
@@ -293,6 +378,8 @@
 
                         </form>
 
+                        }
+
                     </div>
 
                 </div>
@@ -300,14 +387,36 @@
         </div>
     </div>
     <div class="card flex justify-center">
-        <p-dialog header="Edit Profile" [(visible)]="ui.visible" [style]="{ width: '70vw' }">
-            <span class="p-text-secondary block mb-8">Update your information.</span>
+        <p-dialog header="Edit Profile" [(visible)]="ui.visible" [style]="{ width: '70vw' }" (onHide)="close()">
+
+            @if (ui.formularioObjetoActivado === "formularioObjetoActivado") {
+
             <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div ">
                 <app-formulario-mueble class="n"></app-formulario-mueble>
             </div>
+
+            }
+
+            @if (ui.formularioObjetoActivado === "formularioRepisa") {
+
+            <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div ">
+                <app-control-repisa class="n"></app-control-repisa>
+            </div>
+
+            }
+
+            @if (ui.formularioObjetoActivado === "formularioTipoProducto") {
+
+            <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div ">
+                <app-control-tipo-producto class="n"></app-control-tipo-producto>
+            </div>
+
+            }
+
+
             <div class="flex justify-end gap-2">
-                <p-button label="Cancel" severity="secondary" (click)="ui.visible = false" />
-                <p-button label="Save" (click)="ui.visible = false" />
+                <p-button label="Cancel" severity="secondary" (click)="close()" />
+                <p-button label="Guardar" (click)="guardarObjeto()" />
             </div>
         </p-dialog>
     </div>

@@ -1,0 +1,18 @@
+
+
+
+.one{
+    height: 35% !important;
+    display: flex;
+    align-items: center;
+    align-content: center;
+    
+}
+
+.texto-contenido{
+    padding-top: 0% !important;
+    margin-top: 0% !important;
+    display: flex;
+    align-items: start !important;
+    align-content: end !important;
+}

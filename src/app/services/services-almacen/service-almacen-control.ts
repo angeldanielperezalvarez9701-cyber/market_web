@@ -5,6 +5,8 @@ import { EndPoitBase } from '../../utils/constantes/EnpoitBase';
 import { MessageService } from 'primeng/api';
 import { ErrorClient } from '../error-client';
 import { catchError, Observable, tap, throwError } from 'rxjs';
+import { UiGlobal } from '../ui/ui-global';
+import { Mueble } from '../../model/Mueble';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +17,10 @@ export class ServiceAlmacenControl {
   almacen = {} as Almacen;
   loading: boolean = false;
   messageService = inject(MessageService);
-  constructor(private api: ApiService, private errorHttp: ErrorClient) { }
+  almacenRederizado=signal<boolean> (false);
+  mueblesVista = signal<Mueble[]>([]);
+
+  constructor(private api: ApiService, private errorHttp: ErrorClient,public uiGlobal :UiGlobal) { }
 
 
   objetoAlmacen(almacen: Almacen): Almacen {
@@ -27,8 +32,8 @@ export class ServiceAlmacenControl {
       notasAlmacen: almacen.notasAlmacen ?? '',
       descripcionAlmacen: almacen.descripcionAlmacen ?? '',
       eliminarAlmacen :almacen.eliminarAlmacen ?? true,
-      ubicacionDTO: almacen.ubicacionDTO ?? null,
-      mueblesMuebleDTOS: almacen.mueblesMuebleDTOS ?? [],
+      ubicacion: almacen.ubicacion ?? null,
+      muebles: almacen.muebles ?? [],
       tiendaDTOS: almacen.tiendaDTOS ?? [],
       inventarioGeneralDTO: almacen.inventarioGeneralDTO ?? []
 
@@ -57,7 +62,11 @@ export class ServiceAlmacenControl {
 
     this.api.getById(endpoint, idAlmacen).subscribe({
       next: (data => {
+        console.log("GET BY ID", data);
         this.almacen = data
+        this.almacenRederizado.set(true);
+        this.uiGlobal.activaSpiner.set(false);
+        this.mueblesVista.set(this.almacen.muebles);
       }),
       error: (err => {
         console.log("Error", err)
@@ -89,4 +98,8 @@ export class ServiceAlmacenControl {
     this.errorHttp.rutaError(error);
   }
 
+  limpiaVariables(){
+    this.almacen = {} as Almacen;
+
+  }
 }

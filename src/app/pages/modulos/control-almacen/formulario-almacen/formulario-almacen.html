@@ -15,6 +15,7 @@
             <div class="grid  div-form flex justify-content-center mt-3 ">
                 <div class="formulario-producto sm:col-12 md:col-10 lg:col-10 xl:col-10 divSombreados p-5 ">
                     <form #exampleForm="ngForm" class=" grid  gap-4" (ngSubmit)="onSubmit(exampleForm)">
+                        
                         <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
                             <p-floatLabel variant="on" class="w-full">
 
@@ -79,7 +80,7 @@
 
                             <label for="" class="ml-1 mb-2">Si existe la ubicación selecciona</label>
                             <p-floatLabel variant="on" class="w-full">
-                                <p-select [options]="serviceUbicacion.ubicaciones()" [(ngModel)]="almacen.ubicacionDTO"
+                                <p-select [options]="serviceUbicacion.ubicaciones()" [(ngModel)]="almacen.ubicacion"
                                     optionLabel="notasAdicionalesUbicacion" dataKey="idUbicacion" class="w-full md:w-56"
                                     name="notasAdicionalesUbicacion" id="ubicacionDTO" #ubicacionDTO="ngModel"
                                     />

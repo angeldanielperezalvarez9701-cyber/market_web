@@ -17,28 +17,111 @@
 
                     <form #exampleForm="ngForm" class=" grid gap-4" (ngSubmit)="onSubmit(exampleForm)">
 
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="nombreMueble" aria-describedby="username-help"
+                                    name="nombreMueble" [(ngModel)]="servicioMueble.mueble.nombreMueble" #nombreMueble="ngModel"
+                                    [invalid]="nombreMueble.invalid && (nombreMueble.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Nombre de Mueble</label>
+                            </p-floatLabel>
 
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                nombre del mueble</small>
+                            @if (nombreMueble.invalid && (nombreMueble.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Nombre del mueble
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-inputnumber [(ngModel)]="servicioMueble.mueble.numeroMueble" mode="decimal"
+                                    name="numeroMueble" id="numeroMueble" #numeroMueble="ngModel"
+                                    [invalid]="numeroMueble.invalid && (numeroMueble.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Numero del mueble</label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce el
+                                numero del muble</small>
+                            @if (numeroMueble.invalid && (numeroMueble.touched || exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Numero  del mueble
+                                requerido.</p-message>
+                            }
+                        </div>
+
+                        
                         <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
 
                             <p-floatLabel variant="on" class="w-full">
-                                <p-select [options]="servicioMueble.repisas()"
-                                    [(ngModel)]="servicioMueble.mueble.repisas" optionLabel="nombreTipoMueble"
-                                    class="w-full md:w-56" name="nombreTipoMueble" optionValue="nombreTipoMueble"
-                                    id="nombreRepisa" #nombreRepisa="ngModel"
-                                    [invalid]="nombreRepisa.invalid && (nombreRepisa.touched || exampleForm.submitted)"
-                                    required />
-                                <label for="on_label">Seelcciona el estado o ciudad</label>
+                                <textarea pTextarea id="descripcionMueble" rows="5" cols="30" name="descripcionMueble"
+                                    [(ngModel)]="servicioMueble.mueble.descripcionMueble" #descripcionMueble="ngModel"
+                                    [invalid]="descripcionMueble.invalid && (descripcionMueble.touched || exampleForm.submitted)"
+                                    required style="resize: none" class="h-full w-full"></textarea>
+                                <label for="on_label">Descripción del mueble</label>
                             </p-floatLabel>
 
-                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona la
-                                ciudad o estado de la ciudad o estadoWS </small>
-                            @if (nombreRepisa.invalid && (nombreRepisa.touched ||
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Introduce la
+                                descripción del mueble</small>
+                            @if (descripcionMueble.invalid && (descripcionMueble.touched ||
                             exampleForm.submitted)) {
-                            <p-message severity="error" size="small" variant="simple" class="pl-2">Delegación
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Descripción del
+                                mueble
                                 requerida.</p-message>
                             }
 
                         </div>
+
+                        <div class=" grid sm:col-12 md:col-12 lg:col-12 xl:col-12 divTex">
+
+                            <p-floatLabel variant="on" class="w-full">
+                                <p-select [options]="servicioMueble.tipoMueble()" 
+                                    [(ngModel)]="servicioMueble.mueble.tipoMueble" optionLabel="nombreTipoMueble"
+                                    class="w-full md:w-56" name="nombreTipoMueble" 
+                                    id="nombreRepisa" #nombreRepisa="ngModel"
+                                    [invalid]="nombreRepisa.invalid && (nombreRepisa.touched || exampleForm.submitted)"
+                                    required />
+                                <label for="on_label">Selcciona el tipo de mueble </label>
+                            </p-floatLabel>
+
+                            <small class="sm:col-12 md:col-12 lg:col-12 xl:col-12" id="username-help">Selecciona el
+                                el tipo de mueble </small>
+                            @if (nombreRepisa.invalid && (nombreRepisa.touched ||
+                            exampleForm.submitted)) {
+                            <p-message severity="error" size="small" variant="simple" class="pl-2">Tipo de mueble
+                                requerida.</p-message>
+                            }
+
+                        </div>
+
+                        <div class=" grid sm:col-12 md:col-6 lg:col-6 xl:col-6 divTex">
+                            @if( servicioMueble.mueble.almacen != null){
+                            <p-floatLabel variant="on" class="w-full">
+                                <input pInputText type="text" id="nombreMueble" aria-describedby="username-help"
+                                    name="almacen" [(ngModel)]="servicioMueble.mueble.almacen.nombreAlmacen" #almacen="ngModel"
+                                   />
+                                <label for="on_label">Almacen asignado</label>
+                            </p-floatLabel>
+                        }
+
+                        </div>
+
+                            <div class="grid agregaDireccion  sm:col-12 md:col-12 lg:col-12 xl:col-12">
+
+                                <div class="button-ubicacion sm:col-12 md:col-12 lg:col-12 xl:col-12"
+                                    [ngClass]="{'ocultar-div' : ui.botonRepisa}">
+                                    <p-button class="w-full" label="Agregar repisas" severity="contrast" type="button"
+                                        [rounded]="true" icon="pi pi-check-circle" [raised]="true"  (click)="ui.muestraContenidoRepisa()"
+                                          />
+                                </div>
+                                
+                                <div class="sm:col-12 md:col-12 lg:col-12 xl:col-12 ubicacion-div "
+                                    [ngClass]="{'ocultar-div' : ui.agregarRepisa}">
+                                    <app-control-repisa  class="n"></app-control-repisa>
+                                </div>
+
+                            </div>
 
                     </form>
                 </div>

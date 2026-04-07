@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import { ChangeDetectorRef, Component, inject, OnChanges, OnInit, signal, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MessageModule } from 'primeng/message';
 import { ToastModule } from 'primeng/toast';
@@ -13,13 +14,13 @@ import { BadgeModule } from 'primeng/badge';
 import { ProgressBarModule } from 'primeng/progressbar';
 import { ReactiveFormsModule, FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgClass } from '@angular/common';
-import { ServiceMueble } from '../../../../services/services-almacen/service-mueble';
-import { Mueble } from '../../../../model/Mueble';
 import { ControlAlmacenUi } from '../../../../services/ui/control-almacen-ui';
-import { ControlRepisa } from '../control-repisa/control-repisa';
+import { ServiceMueble } from '../../../../services/services-almacen/service-mueble';
+import { TipoProducto } from '../../../../model/TipoProducto';
+import { TipoMueble } from '../../../../model/TipoMueble';
 
 @Component({
-  selector: 'app-formulario-mueble',
+  selector: 'app-control-tipo-producto',
   imports: [
     FormsModule,
     MessageModule,
@@ -33,22 +34,37 @@ import { ControlRepisa } from '../control-repisa/control-repisa';
     BadgeModule,
     ProgressBarModule,
     ReactiveFormsModule,
-    NgClass,
-    ControlRepisa
+    NgClass
   ],
-  templateUrl: './formulario-mueble.html',
-  styleUrl: './formulario-mueble.css',
+  templateUrl: './control-tipo-producto.html',
+  styleUrl: './control-tipo-producto.css',
 })
-export class FormularioMueble  implements OnInit{
+export class ControlTipoProducto implements OnInit, OnChanges {
 
-  constructor(public servicioMueble : ServiceMueble, public ui: ControlAlmacenUi){}
+  messageService = inject(MessageService);
+
+  constructor(public serviceMueble: ServiceMueble, public ui: ControlAlmacenUi) { }
 
   ngOnInit(): void {
-    var mueble = {} as Mueble;
-    this.servicioMueble.mueble = this.servicioMueble.objetoMueble(mueble);
-    this.servicioMueble.getTipoMueble();
+    
+    this.tipoMueble();
+   
   }
-  onSubmit(form:any){
+
+  ngOnChanges(changes: SimpleChanges): void {
+     this.tipoMueble();
+  }
+
+
+  tipoMueble(){
+
+    var tipoP = {} as TipoMueble;
+     if (this.ui.nuevoTipoProducto) {
+      this.serviceMueble.tipoMuebleObj = this.serviceMueble.objetoTipoMueble(tipoP);
+    }
+  }
+
+  onSubmit(form: any) {
 
   }
 }
